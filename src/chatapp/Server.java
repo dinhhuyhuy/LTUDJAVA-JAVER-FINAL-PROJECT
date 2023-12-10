@@ -21,51 +21,48 @@ import javax.swing.SwingUtilities;
 public class Server {
     ServerSocket server;
     final int PORT = 500;
-    public static HashMap<Integer,ClientRoom> clientList = new HashMap<>();
+    public static HashMap<Integer, ClientRoom> clientList = new HashMap<>();
     JFrame serverFrame;
     public static JTextArea loggingArea;
     JButton turnOff;
 
-
-    public Server(){
-        
+    public Server() {
 
         try {
             server = new ServerSocket(PORT);
         } catch (IOException ie) {
             System.out.println("Cannot open socket." + ie);
-            //loggingArea.append("Cannot open socket." + ie.getMessage() +  "\n");
+            // loggingArea.append("Cannot open socket." + ie.getMessage() + "\n");
             System.exit(1);
         }
         System.out.println("ServerSocket is created " + server);
-        
+
         listening();
     }
 
-    public void listening(){
+    public void listening() {
         SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
+            @Override
+            public void run() {
                 UIforServer();
-			}
+            }
         });
-       
 
-        while(true) {
+        while (true) {
             try {
                 System.out.println("Waiting for connect request...");
-               
+
                 Socket client = server.accept();
-                
+
                 ClientRoom newClient = new ClientRoom(client);
-                //clientList.add(newClient);
+                // clientList.add(newClient);
                 newClient.start();
-   
+
             } catch (IOException ie) {
 
                 try {
                     server.close();
-                } catch (IOException e) {        
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
@@ -79,12 +76,11 @@ public class Server {
         }
     }
 
-
     public void UIforServer() {
         serverFrame = new JFrame();
         serverFrame.setTitle("Server");
         serverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        serverFrame.setSize(500,300);
+        serverFrame.setSize(500, 300);
         serverFrame.setLocationRelativeTo(null);
         serverFrame.setVisible(true);
 
@@ -93,10 +89,10 @@ public class Server {
         loggingArea.setWrapStyleWord(true);
         loggingArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(loggingArea);
-        serverFrame.add(scrollPane,BorderLayout.CENTER);
+        serverFrame.add(scrollPane, BorderLayout.CENTER);
         turnOff = new JButton("Shut down server");
-        turnOff.setPreferredSize(new Dimension(0,50));
-        serverFrame.add(turnOff,BorderLayout.SOUTH);
+        turnOff.setPreferredSize(new Dimension(0, 50));
+        serverFrame.add(turnOff, BorderLayout.SOUTH);
 
         serverFrame.addWindowFocusListener(new WindowAdapter() {
             @Override
@@ -108,11 +104,11 @@ public class Server {
 
         turnOff.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				closeAllSocket();
-				serverFrame.dispose();
-			} 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeAllSocket();
+                serverFrame.dispose();
+            }
         });
 
         loggingArea.append("ServerSocket is created\n");
@@ -120,31 +116,29 @@ public class Server {
 
     }
 
-    public void closeAllSocket(){
-        
+    public void closeAllSocket() {
+
         try {
-			server.close();
-		} catch (IOException e1) {
+            server.close();
+        } catch (IOException e1) {
             loggingArea.append(e1.getMessage() + "\n");
             e1.printStackTrace();
         }
-        for (Map.Entry<Integer, ClientRoom> room : clientList.entrySet()){
+        for (Map.Entry<Integer, ClientRoom> room : clientList.entrySet()) {
             try {
-                if(room.getValue().clientSocket != null){
+                if (room.getValue().clientSocket != null) {
                     room.getValue().clientSocket.close();
                 }
-			} catch (IOException e) {
+            } catch (IOException e) {
                 loggingArea.append(e.getMessage() + "\n");
-				e.printStackTrace();
-			}
+                e.printStackTrace();
+            }
         }
 
     }
-    
 
     public static void main(String[] args) {
         new Server();
     }
-
 
 }

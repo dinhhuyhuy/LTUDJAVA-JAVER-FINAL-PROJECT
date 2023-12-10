@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/macbook/Downloads/postgresql-42.7.1.jar",
+        "/Users/macbook/Downloads/javax.mail.jar",
+        "/Users/macbook/Downloads/jaf-1.1.1/activation.jar",
+        "/Users/macbook/Downloads/jcalendar-1.4/lib/jcalendar-1.4.jar"
+    ]
+}
