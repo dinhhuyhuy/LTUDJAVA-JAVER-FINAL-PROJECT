@@ -6,5 +6,12 @@
         "/Users/macbook/Downloads/jaf-1.1.1/activation.jar",
         "/Users/macbook/Downloads/jcalendar-1.4/lib/jcalendar-1.4.jar"
     ],
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.completion.filteredTypes": [
+        "com.sun.*",
+        "sun.*",
+        "jdk.*",
+        "org.graalvm.*",
+        "io.micrometer.shaded.*"
+    ]
 }

@@ -23,6 +23,7 @@ public class Client {
     public Client() {
         try {
             client = new Socket(InetAddress.getLocalHost(), PORT);
+            // client = new Socket("localhost", PORT);
             OutputStream clientOut = client.getOutputStream();
             pw = new PrintWriter(new OutputStreamWriter(clientOut, "UTF-8"), true);
 
