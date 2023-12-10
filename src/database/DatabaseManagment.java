@@ -33,7 +33,7 @@ public class DatabaseManagment {
         try {
             String databaseName = DatabaseConfig.databaseName;
             // Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://localhost:5432/" + databaseName;
+            String url = "jdbc:postgresql://localhost:5432" + databaseName;
             Properties props = new Properties();
             props.setProperty("user", DatabaseConfig.username);
             props.setProperty("password", DatabaseConfig.password);
