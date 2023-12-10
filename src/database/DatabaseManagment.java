@@ -29,32 +29,11 @@ public class DatabaseManagment {
         return conn;
     }
 
-    // private DatabaseManagment() {
-    // try {
-    // String databaseName = DatabaseConfig.databaseName;
-    // // Class.forName("org.postgresql.Driver");
-    // String url = "jdbc:postgresql://localhost:5432/chat_application" +
-    // databaseName;
-    // Properties props = new Properties();
-    // props.setProperty("user", DatabaseConfig.username);
-    // props.setProperty("password", DatabaseConfig.password);
-    // props.setProperty("ssl", "false");
-    // conn = DriverManager.getConnection(url, props);
-    // System.out.println("connect successfully");
-    // } catch (SQLException e) {
-    // System.out.println(e);
-    // }
-    // }
-
     private DatabaseManagment() {
         try {
-            // Kiểm tra xem các giá trị cấu hình có được khởi tạo hay không
-            if (DatabaseConfig.databaseName == null || DatabaseConfig.username == null
-                    || DatabaseConfig.password == null) {
-                throw new RuntimeException("Database configuration is not properly initialized.");
-            }
-
-            String url = "jdbc:postgresql://localhost:5432/" + DatabaseConfig.databaseName;
+            String databaseName = DatabaseConfig.databaseName;
+            // Class.forName("org.postgresql.Driver");
+            String url = "jdbc:postgresql://localhost:5432/" + databaseName;
             Properties props = new Properties();
             props.setProperty("user", DatabaseConfig.username);
             props.setProperty("password", DatabaseConfig.password);

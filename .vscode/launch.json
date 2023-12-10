@@ -81,9 +81,5 @@
             "name": "Server/3 Client",
             "configurations": ["Launch Server", "Launch Client","Launch Client","Launch Client"]
         },
-        {
-            "name": "Server/AdminClient/Client",
-            "configurations": ["Launch Server","Launch Client"]
-        }
     ]
 }
