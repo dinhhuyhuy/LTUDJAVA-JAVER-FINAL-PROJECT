@@ -139,9 +139,6 @@ public class Login extends JFrame {
 		this.dispose();
 	}
 
-	/**
-	 * Launch the application.
-	 */
 	// public static void main(String[] args) {
 	// EventQueue.invokeLater(new Runnable() {
 	// public void run() {
@@ -265,5 +262,4 @@ public class Login extends JFrame {
 		lblForgetPass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		contentPane.add(lblForgetPass);
 	}
-
 }

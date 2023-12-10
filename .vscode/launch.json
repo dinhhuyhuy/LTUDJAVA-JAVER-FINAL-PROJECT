@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Login",
+            "request": "launch",
+            "mainClass": "user.Login",
+            "projectName": "LTUDJAVA-JAVER-FINAL-PROJECT_65942475"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Client",
+            "request": "launch",
+            "mainClass": "chatapp.Client",
+            "projectName": "LTUDJAVA-JAVER-FINAL-PROJECT_65942475"
+        },
+        {
+            "type": "java",
+            "name": "Server",
+            "request": "launch",
+            "mainClass": "chatapp.Server",
+            "projectName": "LTUDJAVA-JAVER-FINAL-PROJECT_65942475"
+        },
+        {
+            "type": "java",
+            "name": "AddFriendToGroup",
+            "request": "launch",
+            "mainClass": "uichatapp.AddFriendToGroup",
+            "projectName": "LTUDJAVA-JAVER-FINAL-PROJECT_65942475"
+        },
+        {
+            "type": "java",
+            "name": "DetailGroupForm",
+            "request": "launch",
+            "mainClass": "uichatapp.DetailGroupForm",
+            "projectName": "LTUDJAVA-JAVER-FINAL-PROJECT_65942475"
+        },
+        {
+            "type": "java",
+            "name": "MainUser",
+            "request": "launch",
+            "mainClass": "user.MainUser",
+            "projectName": "LTUDJAVA-JAVER-FINAL-PROJECT_65942475"
+        }
+    ]
+}
