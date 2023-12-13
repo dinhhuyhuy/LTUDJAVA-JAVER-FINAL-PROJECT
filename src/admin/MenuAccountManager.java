@@ -108,7 +108,7 @@ public class MenuAccountManager extends MenuAdminLayout {
         String by = new String("ASC");
         String name = null;
 
-        if (Filter.equals("Mặc định") && input.isBlank()) {
+        if (Filter.equals("Mặc định") && input.isEmpty()) {
             filltableUserAccount();
             return;
         }
@@ -120,7 +120,7 @@ public class MenuAccountManager extends MenuAdminLayout {
         else if (Filter.equals("Ngày tạo"))
             sort = new String("CREATED_AT");
 
-        if (!input.isBlank())
+        if (!input.isEmpty())
             name = input;
 
         if (Criteria.equals("Giảm dần"))

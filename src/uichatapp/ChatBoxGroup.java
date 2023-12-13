@@ -24,7 +24,7 @@ public class ChatBoxGroup extends ChatBoxLayout {
 
     private void sendMessage() {
         String message = inputChatTextArea.getText();
-        if (message.isBlank())
+        if (message.isEmpty())
             return;
         // ZonedDateTime myDateObj = ZonedDateTime.now( ZoneId.of("Asia/Ho_Chi_Minh"));
         Timestamp sendTime = new Timestamp(new Date().getTime());

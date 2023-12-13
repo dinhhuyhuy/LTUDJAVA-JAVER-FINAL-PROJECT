@@ -27,7 +27,7 @@ public class AddFriendToGroup extends javax.swing.JFrame {
         DatabaseManagment database = DatabaseManagment.getInstance();
         String searchFriend = searchBarFriend.getText().trim();
         ArrayList<UserAccount> friendList = null;
-        if (!searchFriend.isBlank()) {
+        if (!searchFriend.isEmpty()) {
             friendList = database.getFriendArrayListNotInGroup(userID, groupChat.getID(), searchFriend);
         } else {
             friendList = database.getFriendArrayListNotInGroup(userID, groupChat.getID());

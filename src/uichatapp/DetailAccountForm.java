@@ -45,7 +45,7 @@ public class DetailAccountForm extends javax.swing.JFrame {
         private javax.swing.JButton viewHistoryButton;
 
         private UserAccount user;
-        // private MenuAccountManager menu;
+        private MenuAccountManager menu;
         private boolean isEdit;
 
         // TEST NGAY TẠI FILE NÀY (RUN FILE NÀY)
@@ -128,8 +128,7 @@ changePasswordPanel.add(newLabel, cs);
 cs.gridx = 1;
 changePasswordPanel.add(newPasswordField, cs);
 
-if (JOptionPane.showConfirmDialog(null, changePasswordPanel, "Change
-password", JOptionPane.OK_CANCEL_OPTION,
+if (JOptionPane.showConfirmDialog(null, changePasswordPanel, "Change password", JOptionPane.OK_CANCEL_OPTION,
 JOptionPane.PLAIN_MESSAGE) == JOptionPane.OK_OPTION) {
 
 // Code here
@@ -137,8 +136,7 @@ String oldPass = oldPasswordField.getText().toString().trim();
 String newPass = newPasswordField.getText().toString().trim();
 
 if (newPass.equals(oldPass)) {
-JOptionPane.showMessageDialog(null, "New password should be different from
-old password!",
+JOptionPane.showMessageDialog(null, "New password should be different from old password!",
 "Change password", JOptionPane.WARNING_MESSAGE);
 return;
 }
@@ -151,8 +149,7 @@ JOptionPane.showMessageDialog(null, "Completed!", "Change password",
 JOptionPane.INFORMATION_MESSAGE);
 return;
 } else {
-JOptionPane.showMessageDialog(null, "Old password is incorrect!", "Change
-password",
+JOptionPane.showMessageDialog(null, "Old password is incorrect!", "Change password",
 JOptionPane.WARNING_MESSAGE);
 return;
 }

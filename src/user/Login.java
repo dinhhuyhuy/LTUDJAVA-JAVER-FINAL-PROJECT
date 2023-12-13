@@ -48,7 +48,7 @@ public class Login extends JFrame {
 		String username, password;
 		username = new String(txtUser.getText());
 		password = new String(txtPass.getPassword());
-		if (username.isBlank() || password.isBlank()) {
+		if (username.isEmpty() || password.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter all required fields!");
 			return null;
 		}

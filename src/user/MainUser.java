@@ -164,7 +164,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jTabButton1_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat. (1).png"))); // NOI18N
+        jTabButton1_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat.png"))); // NOI18N
 
         javax.swing.GroupLayout jTabButton1Layout = new javax.swing.GroupLayout(jTabButton1);
         jTabButton1.setLayout(jTabButton1Layout);
@@ -188,7 +188,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jTabButton2_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat. (2).png"))); // NOI18N
+        jTabButton2_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat.png"))); // NOI18N
 
         javax.swing.GroupLayout jTabButton2Layout = new javax.swing.GroupLayout(jTabButton2);
         jTabButton2.setLayout(jTabButton2Layout);

@@ -85,7 +85,7 @@ public class MenuGroup extends JPanel {
 
     public void createNewGroupChat() {
         String groupName = inputGroupName.getText();
-        if (groupName.isBlank()) {
+        if (groupName.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Group name is empty", "Input a group name",
                     JOptionPane.WARNING_MESSAGE);
             return;
