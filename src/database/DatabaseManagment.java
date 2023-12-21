@@ -1062,11 +1062,11 @@ public class DatabaseManagment {
         String SELECT_QUERY = "SELECT GC.ID,GC.GROUP_NAME,COUNT(MB.MEMBER_ID) AS SOLUONG,GC.CREATED_AT,GC.ONLINE FROM GROUPCHAT GC LEFT OUTER JOIN GROUPCHAT_MEMBER MB ON GC.ID = MB.GROUPCHAT_ID GROUP BY GC.ID";
         ResultSet data = null;
         ArrayList<GroupChat> groupList = new ArrayList<>();
-        try (PreparedStatement statment = conn.prepareStatement(SELECT_QUERY, ResultSet.TYPE_SCROLL_SENSITIVE,
+        try (PreparedStatement statement = conn.prepareStatement(SELECT_QUERY, ResultSet.TYPE_SCROLL_SENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);) {
 
             // statment.setString(1, name);
-            data = statment.executeQuery();
+            data = statement.executeQuery();
 
             if (!data.next()) {
                 return groupList;
@@ -1101,16 +1101,23 @@ public class DatabaseManagment {
         return groupList;
     }
 
-    public ArrayList<GroupChat> getAllGroupChat(String sort, String by) {
-        String SELECT_QUERY = "SELECT GC.ID,GC.GROUP_NAME,COUNT(MB.MEMBER_ID) AS SOLUONG,GC.CREATED_AT,GC.ONLINE FROM GROUPCHAT GC INNER JOIN GROUPCHAT_MEMBER MB ON GC.ID = MB.GROUPCHAT_ID GROUP BY GC.ID ORDER BY "
-                + sort + " " + by;
+    public ArrayList<GroupChat> getAllGroupChat(String name, String sort, String by) {
+        String findName = "";
+        if(!name.isEmpty()){
+            findName = "WHERE GC.GROUP_NAME LIKE '%" + name + "%' ";
+        }
+
+        String SELECT_QUERY = "SELECT GC.ID,GC.GROUP_NAME,COUNT(MB.MEMBER_ID) AS SOLUONG, GC.CREATED_AT,GC.ONLINE "
+                + "FROM GROUPCHAT GC INNER JOIN GROUPCHAT_MEMBER MB ON GC.ID = MB.GROUPCHAT_ID "
+                + findName
+                + "GROUP BY GC.ID ORDER BY GC." + sort + " " + by;
+
         ResultSet data = null;
         ArrayList<GroupChat> groupList = new ArrayList<>();
-        try (PreparedStatement statment = conn.prepareStatement(SELECT_QUERY, ResultSet.TYPE_SCROLL_SENSITIVE,
+        try (PreparedStatement statement = conn.prepareStatement(SELECT_QUERY, ResultSet.TYPE_SCROLL_SENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);) {
 
-            // statment.setString(1, name);
-            data = statment.executeQuery();
+            data = statement.executeQuery();
 
             if (!data.next()) {
                 return groupList;
