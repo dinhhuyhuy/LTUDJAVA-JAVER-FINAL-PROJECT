@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="library(.jar)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/library(.jar)/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library(.jar)/jcalendar-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library(.jar)/postgresql-42.7.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

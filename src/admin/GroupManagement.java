@@ -33,7 +33,7 @@ public class GroupManagement extends JFrame {
     public GroupManagement(){
         this.setTitle("Danh sách nhóm");
         this.setSize(800, 720);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
         //Tạo danh sách nhóm

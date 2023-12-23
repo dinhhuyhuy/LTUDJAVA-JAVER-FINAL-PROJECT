@@ -1,12 +1,6 @@
 package database;
 
-import java.sql.Timestamp;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -972,6 +966,91 @@ public class DatabaseManagment {
                 statment.setString(1, "%" + name + "%");
                 statment.setString(2, "%" + name + "%");
             }
+
+            data = statment.executeQuery();
+
+            if (!data.next()) {
+                return accountList;
+            } else {
+
+                do {
+                    UserAccount account = new UserAccount();
+                    account.setID(data.getInt("ID"));
+                    account.setUsername(data.getString("USERNAME"));
+                    account.setFullname(data.getString("FULLNAME"));
+                    account.setAddress(data.getString("address"));
+                    Date birthDay = data.getDate("date_of_birth");
+                    if (!data.wasNull()) {
+                        account.setBirthDay(birthDay.toString());
+                    }
+
+                    account.setGender(data.getString("Gender"));
+                    account.setEmail(data.getString("email"));
+                    Timestamp createdAt = data.getTimestamp("created_at");
+                    if (!data.wasNull()) {
+                        String formattedDate = new SimpleDateFormat("HH:mm dd-MM-yyyy").format(createdAt);
+                        account.setCreatedAt(formattedDate);
+                    }
+                    account.setOnline(data.getBoolean("ONLINE"));
+                    account.setBanned(data.getBoolean("BANNED"));
+                    accountList.add(account);
+
+                } while (data.next());
+                return accountList;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (data != null) {
+                try {
+                    data.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return accountList;
+
+    }
+
+    public ArrayList<UserAccount> searchUserAccount(String username, String fullname, String banned, String sort) {
+
+        boolean check = false;
+        String SELECT_QUERY = "SELECT * FROM USER_ACCOUNT WHERE ";
+        if(!username.isEmpty()){
+            SELECT_QUERY += "USERNAME LIKE '%" + username +"%' ";
+            check = true;
+        }
+        if(!fullname.isEmpty()){
+            if(check){
+                SELECT_QUERY += "AND ";
+            }
+            SELECT_QUERY += "FULLNAME LIKE '%" + fullname +"%' ";
+            check = true;
+        }
+        if(check == false){
+            SELECT_QUERY = "SELECT * FROM USER_ACCOUNT";
+        }
+        if(banned != null){
+            if(check){
+                SELECT_QUERY += "AND ";
+            }
+            else {
+                SELECT_QUERY += " WHERE ";
+            }
+            SELECT_QUERY += "BANNED = '" + banned +"' ";
+            System.out.println(SELECT_QUERY);
+        }
+        if(sort != null){
+            SELECT_QUERY += " ORDER BY " + sort + " DESC" ;
+        }
+
+
+        ResultSet data = null;
+        ArrayList<UserAccount> accountList = new ArrayList<>();
+        try (PreparedStatement statment = conn.prepareStatement(SELECT_QUERY, ResultSet.TYPE_SCROLL_SENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);) {
 
             data = statment.executeQuery();
 
