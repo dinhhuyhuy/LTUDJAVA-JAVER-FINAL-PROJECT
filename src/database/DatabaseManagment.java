@@ -1040,7 +1040,6 @@ public class DatabaseManagment {
                 SELECT_QUERY += " WHERE ";
             }
             SELECT_QUERY += "BANNED = '" + banned +"' ";
-            System.out.println(SELECT_QUERY);
         }
         if(sort != null){
             SELECT_QUERY += " ORDER BY " + sort + " DESC" ;

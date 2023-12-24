@@ -1,7 +1,7 @@
 package admin;
 
 import database.DatabaseManagment;
-import datastructure.GroupChat;
+import datastructure.*;
 import datastructure.UserAccount;
 import utils.Utils;
 
@@ -11,6 +11,78 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+class AddUser extends  JFrame {
+    private JTextField usernameField;
+    private JTextField passwordField;
+    private JTextField fullnameField;
+    private JTextField addressField;
+    private JTextField birthDayField;
+    private JTextField genderField;
+    private JTextField emailField;
+    public AddUser() {
+        setTitle("Thêm Người Dùng");
+        setSize(800, 400);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // Khởi tạo các JTextField
+
+        usernameField = new JTextField(30);
+        passwordField = new JTextField(30);
+        fullnameField = new JTextField(30);
+        addressField = new JTextField(30);
+        birthDayField = new JTextField(30);
+        genderField = new JTextField(30);
+        emailField = new JTextField(30);
+
+        // Tạo JButton để thêm người dùng
+        JButton addButton = new JButton("Thêm Người Dùng");
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String username = usernameField.getText();
+                String password = passwordField.getText();
+                String fullname = fullnameField.getText();
+                String address = addressField.getText();
+                String birthDay = birthDayField.getText();
+                String gender = genderField.getText();
+                String email = emailField.getText();
+                DatabaseManagment db = DatabaseManagment.getInstance();
+                int result = db.addNewAccount(new UserAccount(-1, username, password, fullname, address, birthDay, gender, email, false));
+                if(result == -1){
+                    JOptionPane.showMessageDialog(AddUser.this, "Thêm người dùng không thành công.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    JOptionPane.showMessageDialog(AddUser.this, "Người dùng đã được thêm thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        // Sắp xếp giao diện bằng cách sử dụng LayoutManager
+        setLayout(new GridLayout(14, 2));
+
+        add(new JLabel("Username:"));
+        add(usernameField);
+        add(new JLabel("Password:"));
+        add(passwordField);
+        add(new JLabel("Fullname:"));
+        add(fullnameField);
+        add(new JLabel("Address:"));
+        add(addressField);
+        add(new JLabel("BirthDay:"));
+        add(birthDayField);
+        add(new JLabel("Gender:"));
+        add(genderField);
+        add(new JLabel("Email:"));
+        add(emailField);
+        add(addButton);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}
 public class UserManagement extends JFrame {
 
     static void fillUserTable(JTable jtUser, String name, String sort, String by) {
@@ -141,6 +213,21 @@ public class UserManagement extends JFrame {
 
         this.add(jpSearchBar);
         this.add(jpTable);
+
+        JButton jbAddUser = new JButton("Thêm người dùng");
+        jbAddUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        new AddUser();
+                    }
+                });
+            }
+        });
+        this.add(jbAddUser);
+
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
