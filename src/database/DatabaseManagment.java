@@ -831,7 +831,7 @@ public class DatabaseManagment {
     }
 
     public ArrayList<LoginHistory> getAllLoginHistory(String sort, String by) {
-        String SELECT_QUERY = "SELECT LH.*,UA.USERNAME FROM LOGIN_HISTORY LH INNER JOIN USER_ACCOUNT UA ON LH.USER_ID = UA.ID ORDER BY "
+        String SELECT_QUERY = "SELECT LH.*,UA.* FROM LOGIN_HISTORY LH INNER JOIN USER_ACCOUNT UA ON LH.USER_ID = UA.ID ORDER BY "
                 + sort + " " + by;
         ResultSet data = null;
         ArrayList<LoginHistory> loginList = new ArrayList<>();
@@ -850,6 +850,7 @@ public class DatabaseManagment {
                     login.setID(data.getInt("LOGIN_ID"));
                     login.setUserID(data.getInt("USER_ID"));
                     login.setUserName(data.getString("username"));
+                    login.setFullName(data.getString("fullname"));
                     Timestamp date = data.getTimestamp("LOGIN_TIME");
                     String formattedDate = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(date);
                     login.setLoginTime(formattedDate);

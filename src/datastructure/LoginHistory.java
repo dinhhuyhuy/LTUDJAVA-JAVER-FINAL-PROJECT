@@ -4,6 +4,7 @@ public class LoginHistory {
     private int ID;
     private int userID;
     private String userName;
+    private String fullName;
     private String loginTime;
 
     public LoginHistory() {
@@ -28,10 +29,11 @@ public class LoginHistory {
     public String getUserName() {
         return this.userName;
     }
-
     public void setUserName(String userName) {
         this.userName = userName;
     }
+    public String getFullName(){return this.fullName;};
+    public void setFullName(String fullName){this.fullName = fullName;}
 
     public int getID() {
         return this.ID;

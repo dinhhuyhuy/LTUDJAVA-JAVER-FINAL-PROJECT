@@ -527,13 +527,5 @@ public class UserManagement extends JFrame {
 
         this.add(jpUpdatePasswordAndLoginHistoryAndFriendList);
     }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                UserManagement um = new UserManagement();
-                um.setVisible(true);
-            }
-        });
-    }
+
 }

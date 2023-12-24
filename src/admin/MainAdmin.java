@@ -43,7 +43,9 @@ public class MainAdmin{
         jbLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainFrame.setEnabled(true);
+                UserLoginManagement ulm = new UserLoginManagement();
+                ulm.setVisible(true);
             }
         });
         c.gridx = 1; c.gridy = 1; c.gridwidth = 1; c.weightx = 1.0;
