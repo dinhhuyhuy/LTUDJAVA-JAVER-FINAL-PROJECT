@@ -222,6 +222,7 @@ public class DatabaseManagment {
                     account.setFullname(data.getString("FULLNAME"));
                     account.setOnline(data.getBoolean("ONLINE"));
                     account.setGender(data.getString("Gender"));
+
                     friendList.add(account);
 
                 } while (data.next());

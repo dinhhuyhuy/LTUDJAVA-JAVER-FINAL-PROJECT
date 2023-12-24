@@ -197,6 +197,48 @@ class LoginHistory extends JFrame {
         }
     }
 }
+
+class FriendList extends JFrame {
+    private JTable friendTable;
+
+    private DefaultTableModel tableModel;
+
+    public FriendList() {
+        setTitle("Danh sách bạn bè");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // Khởi tạo JTable và DefaultTableModel
+        final String[][] col = {{"ID bạn bè", "Tên đăng nhập", "Họ tên", "Giới tính" ,"Trạng thái"}};
+        tableModel = new DefaultTableModel(col[0], 0);
+
+        friendTable = new JTable(tableModel);
+
+        // Thêm JTable vào JScrollPane để hỗ trợ cuộn
+        JScrollPane scrollPane = new JScrollPane(friendTable);
+
+        // Thêm các thành phần vào JFrame
+        add(scrollPane, BorderLayout.CENTER);
+
+        // Hiển thị frame
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void addFriendList(int id) {
+        ArrayList<datastructure.UserAccount> friendList = DatabaseManagment.getInstance().getFriendArrayList(id);
+        for(datastructure.UserAccount friend : friendList){
+            String friendId = String.valueOf(friend.getID());
+            String username = friend.getUsername();
+            String fullname = friend.getFullname();
+            String gender = friend.getGender();
+            String banned = (friend.getBanned()) ? "Khóa" : "Mở";
+
+            String row[] = { friendId, username, fullname, gender, banned };
+            tableModel.addRow(row);
+        }
+    }
+}
 public class UserManagement extends JFrame {
 
     static void fillUserTable(JTable jtUser, String name, String sort, String by) {
@@ -458,6 +500,23 @@ public class UserManagement extends JFrame {
                 boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
                 if(result){
                     new LoginHistory().addLoginRecord(Integer.parseInt(Id));
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(UserManagement.this, "Không tìm thấy người dùng.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        JButton jbFriendList = new JButton("Xem danh sách bạn bè");
+        jpUpdatePasswordAndLoginHistoryAndFriendList.add(jbFriendList);
+        jbFriendList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String Id = JOptionPane.showInputDialog(UserManagement.this, "Nhập ID:", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
+                if(result){
+                    new FriendList().addFriendList(Integer.parseInt(Id));
 
                 }
                 else{
