@@ -1,7 +1,6 @@
 package admin;
 
 import database.DatabaseManagment;
-import datastructure.*;
 import datastructure.UserAccount;
 import utils.Utils;
 
@@ -82,6 +81,86 @@ class AddUser extends  JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+}
+
+class EditUser extends JFrame {
+    private JTextField usernameField;
+    private JTextField fullnameField;
+    private JTextField addressField;
+    private JTextField birthDayField;
+    private JTextField genderField;
+    private JTextField emailField;
+
+    private UserAccount user;  // Lớp UserAccount để lưu thông tin người dùng
+
+    public EditUser(UserAccount user) {
+        super("Chỉnh Sửa Thông Tin Người Dùng");
+        this.user = user;
+
+        // Khởi tạo các JTextField với dữ liệu hiện tại của người dùng
+        usernameField = new JTextField(user.getUsername(), 20);
+        fullnameField = new JTextField(user.getFullname(), 20);
+        addressField = new JTextField(user.getAddress(), 20);
+        birthDayField = new JTextField(user.getBirthDay(), 20);
+        genderField = new JTextField(user.getGender(), 20);
+        emailField = new JTextField(user.getEmail(), 20);
+
+        // Tạo JButton để lưu các thay đổi
+        JButton saveButton = new JButton("Lưu");
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveChanges();
+            }
+        });
+
+        // Tạo JButton để hủy bỏ và đóng dialog
+        JButton cancelButton = new JButton("Hủy Bỏ");
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+
+        // Sắp xếp giao diện bằng cách sử dụng LayoutManager
+        setLayout(new GridLayout(7, 2));
+        add(new JLabel("Username:"));
+        add(usernameField);
+        add(new JLabel("Fullname:"));
+        add(fullnameField);
+        add(new JLabel("Address:"));
+        add(addressField);
+        add(new JLabel("BirthDay:"));
+        add(birthDayField);
+        add(new JLabel("Gender:"));
+        add(genderField);
+        add(new JLabel("Email:"));
+        add(emailField);
+        add(saveButton);
+        add(cancelButton);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private void saveChanges() {
+        // Cập nhật thông tin người dùng với các giá trị mới
+        user.setUsername(usernameField.getText());
+        user.setFullname(fullnameField.getText());
+        user.setAddress(addressField.getText());
+        user.setBirthDay(birthDayField.getText());
+        user.setGender(genderField.getText());
+        user.setEmail(emailField.getText());
+
+        // TODO: Lưu thông tin người dùng vào cơ sở dữ liệu hoặc xử lý tùy thuộc vào yêu cầu của bạn
+        DatabaseManagment.getInstance().updateAccount(user);
+        // Đóng JFrame sau khi lưu thay đổi
+        dispose();
+    }
+
+
 }
 public class UserManagement extends JFrame {
 
@@ -234,6 +313,28 @@ public class UserManagement extends JFrame {
             }
         });
         jpUpdateUser.add(jbAddUser);
+
+        JButton jbEditUser = new JButton("Cập nhật thông tin");
+        jbEditUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        String Id = JOptionPane.showInputDialog(UserManagement.this, "Nhập ID:", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
+                        if(result){
+                            new EditUser(DatabaseManagment.getInstance().getDetailAccount(Integer.parseInt(Id)));
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(UserManagement.this, "Không tìm thấy người dùng.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                });
+            }
+        });
+        jpUpdateUser.add(jbEditUser);
+
         JButton jbDeleteUser = new JButton("Xóa người dùng");
         jbDeleteUser.addActionListener(new ActionListener() {
             @Override
