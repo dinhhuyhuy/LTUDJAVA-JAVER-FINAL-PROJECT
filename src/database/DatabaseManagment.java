@@ -1042,7 +1042,7 @@ public class DatabaseManagment {
             SELECT_QUERY += "BANNED = '" + banned +"' ";
         }
         if(sort != null){
-            SELECT_QUERY += " ORDER BY " + sort + " DESC" ;
+            SELECT_QUERY += " ORDER BY " + sort + " ASC" ;
         }
 
 

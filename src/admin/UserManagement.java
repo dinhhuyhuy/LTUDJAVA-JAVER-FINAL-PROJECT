@@ -173,7 +173,7 @@ public class UserManagement extends JFrame {
         jpSearchButton.add(jcBanned);
 
         JPanel jpSortButton = new JPanel();
-        String []sort = {"Tên","Ngày tạo"};
+        String []sort = {"ID","Tên","Ngày tạo"};
         JComboBox<String> jcSort = new JComboBox<>(sort);
         JLabel jlSort = new JLabel("Sắp xếp: ");
         jpSortButton.add(jlSort);
@@ -203,7 +203,13 @@ public class UserManagement extends JFrame {
                     banned = null;
                 }
                 int selectSort = jcSort.getSelectedIndex();
-                String sort = (selectSort == 0) ? "FULLNAME" : "CREATED_AT";
+                String sort = "";
+                if(selectSort == 0)
+                    sort = "ID";
+                if(selectSort == 1)
+                    sort = "FULLNAME";
+                if(selectSort == 2)
+                    sort = "CREATED_AT";
 
 
                 fillSearchUserTable(jtUser, username, fullname, banned, sort);
@@ -214,6 +220,7 @@ public class UserManagement extends JFrame {
         this.add(jpSearchBar);
         this.add(jpTable);
 
+        JPanel jpUpdateUser = new JPanel();
         JButton jbAddUser = new JButton("Thêm người dùng");
         jbAddUser.addActionListener(new ActionListener() {
             @Override
@@ -226,7 +233,30 @@ public class UserManagement extends JFrame {
                 });
             }
         });
-        this.add(jbAddUser);
+        jpUpdateUser.add(jbAddUser);
+        JButton jbDeleteUser = new JButton("Xóa người dùng");
+        jbDeleteUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        String Id = JOptionPane.showInputDialog(UserManagement.this, "Nhập ID:", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
+                        if(result){
+                            DatabaseManagment.getInstance().deleteAnAccount(Integer.parseInt(Id));
+                            JOptionPane.showMessageDialog(UserManagement.this, "Xóa người dùng thành công.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(UserManagement.this, "Xóa người dùng không thành công.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                });
+            }
+        });
+        jpUpdateUser.add(jbDeleteUser);
+
+        this.add(jpUpdateUser);
 
     }
     public static void main(String[] args) {
