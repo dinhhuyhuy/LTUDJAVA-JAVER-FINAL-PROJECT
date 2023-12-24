@@ -346,7 +346,7 @@ public class UserManagement extends JFrame {
                         boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
                         if(result){
                             DatabaseManagment.getInstance().deleteAnAccount(Integer.parseInt(Id));
-                            JOptionPane.showMessageDialog(UserManagement.this, "Xóa người dùng thành công.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(UserManagement.this, "Xóa người dùng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                         }
                         else{
                             JOptionPane.showMessageDialog(UserManagement.this, "Xóa người dùng không thành công.", "Thông báo", JOptionPane.ERROR_MESSAGE);
@@ -359,6 +359,41 @@ public class UserManagement extends JFrame {
 
         this.add(jpUpdateUser);
 
+        JPanel jpLockUser = new JPanel();
+        JButton jbLockUser = new JButton("Khóa người dùng");
+        jpLockUser.add(jbLockUser);
+        jbLockUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String Id = JOptionPane.showInputDialog(UserManagement.this, "Nhập ID:", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
+                if(result){
+                    DatabaseManagment.getInstance().setLockUserAccount(Integer.parseInt(Id), true);
+                    JOptionPane.showMessageDialog(UserManagement.this, "Khóa người dùng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(UserManagement.this, "Không tìm thấy người dùng.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        JButton jbUnlockUser = new JButton("Mở khóa người dùng");
+        jpLockUser.add(jbUnlockUser);
+        jbUnlockUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String Id = JOptionPane.showInputDialog(UserManagement.this, "Nhập ID:", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
+                if(result){
+                    DatabaseManagment.getInstance().setLockUserAccount(Integer.parseInt(Id), false);
+                    JOptionPane.showMessageDialog(UserManagement.this, "Mở khóa người dùng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(UserManagement.this, "Không tìm thấy người dùng.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        this.add(jpLockUser);
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
