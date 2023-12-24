@@ -162,6 +162,41 @@ class EditUser extends JFrame {
 
 
 }
+
+class LoginHistory extends JFrame {
+    private JTable loginTable;
+    private DefaultTableModel tableModel;
+
+    public LoginHistory() {
+        setTitle("Lịch Sử Đăng Nhập");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // Khởi tạo JTable và DefaultTableModel
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("Thời Gian Đăng Nhập");
+
+        loginTable = new JTable(tableModel);
+
+        // Thêm JTable vào JScrollPane để hỗ trợ cuộn
+        JScrollPane scrollPane = new JScrollPane(loginTable);
+
+        // Thêm các thành phần vào JFrame
+        add(scrollPane, BorderLayout.CENTER);
+
+        // Hiển thị frame
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void addLoginRecord(int id) {
+        // Thêm thời gian đăng nhập mới vào bảng
+        ArrayList<datastructure.LoginHistory> loginHistories = DatabaseManagment.getInstance().getAllLoginHistoryUser(id);
+        for(datastructure.LoginHistory loginHistory : loginHistories){
+            tableModel.addRow(new String[]{loginHistory.getLoginTime()});
+        }
+    }
+}
 public class UserManagement extends JFrame {
 
     static void fillUserTable(JTable jtUser, String name, String sort, String by) {
@@ -395,9 +430,9 @@ public class UserManagement extends JFrame {
         });
         this.add(jpLockUser);
 
-        JPanel jpUpdatePasswordAndLoginHistory = new JPanel();
+        JPanel jpUpdatePasswordAndLoginHistoryAndFriendList = new JPanel();
         JButton jbUpdatePassword = new JButton("Cập nhật mật khẩu");
-        jpUpdatePasswordAndLoginHistory.add(jbUpdatePassword);
+        jpUpdatePasswordAndLoginHistoryAndFriendList.add(jbUpdatePassword);
         jbUpdatePassword.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -415,8 +450,23 @@ public class UserManagement extends JFrame {
         });
 
         JButton jbLoginHistory = new JButton("Xem lịch sử đăng nhập");
+        jpUpdatePasswordAndLoginHistoryAndFriendList.add(jbLoginHistory);
+        jbLoginHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String Id = JOptionPane.showInputDialog(UserManagement.this, "Nhập ID:", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
+                if(result){
+                    new LoginHistory().addLoginRecord(Integer.parseInt(Id));
 
-        this.add(jpUpdatePasswordAndLoginHistory);
+                }
+                else{
+                    JOptionPane.showMessageDialog(UserManagement.this, "Không tìm thấy người dùng.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        this.add(jpUpdatePasswordAndLoginHistoryAndFriendList);
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
