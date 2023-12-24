@@ -394,6 +394,29 @@ public class UserManagement extends JFrame {
             }
         });
         this.add(jpLockUser);
+
+        JPanel jpUpdatePasswordAndLoginHistory = new JPanel();
+        JButton jbUpdatePassword = new JButton("Cập nhật mật khẩu");
+        jpUpdatePasswordAndLoginHistory.add(jbUpdatePassword);
+        jbUpdatePassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String Id = JOptionPane.showInputDialog(UserManagement.this, "Nhập ID:", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                boolean result = DatabaseManagment.getInstance().checkAccount(Integer.parseInt(Id));
+                if(result){
+                    String newPassword = JOptionPane.showInputDialog(UserManagement.this, "Nhập mật khẩu mới:", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    DatabaseManagment.getInstance().changePasswordUser(Integer.parseInt(Id), newPassword);
+                    JOptionPane.showMessageDialog(UserManagement.this, "Cập nhật mật khẩu người dùng thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(UserManagement.this, "Không tìm thấy người dùng.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        JButton jbLoginHistory = new JButton("Xem lịch sử đăng nhập");
+
+        this.add(jpUpdatePasswordAndLoginHistory);
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
