@@ -110,7 +110,9 @@ public class MainAdmin{
         jbfriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainFrame.setEnabled(true);
+                UserFriendList ufl = new UserFriendList();
+                ufl.setVisible(true);
             }
         });
         c.gridx = 0; c.gridy = 3; c.gridwidth = 1; c.weightx = 1.0;
