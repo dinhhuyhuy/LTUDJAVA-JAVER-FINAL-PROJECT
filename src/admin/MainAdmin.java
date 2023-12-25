@@ -96,6 +96,9 @@ public class MainAdmin{
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                mainFrame.setEnabled(true);
+                RegistrationChart rc = new RegistrationChart();
+                rc.setVisible(true);
             }
         });
         c.gridx = 2; c.gridy = 2; c.gridwidth = 1; c.weightx = 1.0;
