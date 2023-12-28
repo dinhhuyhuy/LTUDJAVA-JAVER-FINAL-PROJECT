@@ -46,7 +46,7 @@ public class Register extends JFrame {
 		password = new String(txtPass.getPassword());
 		repass = new String(txtRePass.getPassword());
 		email = new String(txtEmail.getText().trim());
-		if (username.isBlank() || password.isBlank() || email.isBlank() || repass.isBlank()) {
+		if (username.isEmpty() || password.isEmpty() || email.isEmpty() || repass.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter all required fields");
 			return null;
 		} else if (!repass.equals(password)) {

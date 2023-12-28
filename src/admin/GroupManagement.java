@@ -9,9 +9,14 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class GroupManagement extends JFrame {
+    private int groupID;
+    private String groupName;
+
     static void fillGroupTable(JTable jtGroup, String name, String sort, String by) {
         Utils.clearTable(jtGroup);
         DatabaseManagment db = DatabaseManagment.getInstance();
@@ -39,19 +44,26 @@ public class GroupManagement extends JFrame {
         //Tạo danh sách nhóm
         JPanel jpTable = new JPanel();
         jpTable.setBackground(Color.white);
-        jpTable.setSize(800, 620);
+        jpTable.setSize(800, 520);
 
         final String[][] col = {{"ID Nhóm", "Tên Nhóm", "Số thành viên",
                 "Ngày Khởi Tạo", "Trạng Thái"}};
         DefaultTableModel tableModel = new DefaultTableModel(col[0], 0);
         JTable jtGroup = new JTable(tableModel);
         fillGroupTable(jtGroup,"", "CREATED_AT", "DESC");
+        jtGroup.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent me) {
+                groupID = Integer.parseInt(jtGroup.getValueAt(jtGroup.getSelectedRow(), 0).toString());
+                groupName = jtGroup.getValueAt(jtGroup.getSelectedRow(), 1).toString();
+            }
+        });
 
         JScrollPane jspGroup = new JScrollPane(jtGroup);
-        jspGroup.setPreferredSize(new Dimension(750, 620));
+        jspGroup.setPreferredSize(new Dimension(750, 520));
         jpTable.add(jspGroup);
 
-        //Tạo các nút nhấn
+        //Tạo các filter
         JPanel jpSortBar = new JPanel();
         jpSortBar.setBackground(Color.white);
         jpSortBar.setSize(800, 100);
@@ -86,7 +98,33 @@ public class GroupManagement extends JFrame {
         });
         jpSortBar.add(jbSearch);
 
+        JPanel jpMember = new JPanel();
+        jpMember.setBackground(Color.white);
+        jpMember.setSize(800, 100);
+
+        JButton jbMenber = new JButton("Xem thành viên");
+        jbMenber.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame jfrMember = new GroupMember(groupID, groupName, "member");
+                jfrMember.setVisible(true);
+            }
+        });
+        jpMember.add(jbMenber);
+
+        JButton jbAdmin = new JButton("Xem quản lý");
+        jbAdmin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame jfrMember = new GroupMember(groupID, groupName, "admin");
+                jfrMember.setVisible(true);
+            }
+        });
+        jpMember.add(jbAdmin);
+
+
         this.add(jpSortBar);
         this.add(jpTable);
+        this.add(jpMember);
     }
 }

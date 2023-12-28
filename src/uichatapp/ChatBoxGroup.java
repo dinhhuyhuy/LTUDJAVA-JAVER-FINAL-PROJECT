@@ -51,7 +51,7 @@ public class ChatBoxGroup extends ChatBoxLayout {
 
     private void findMessageGroup() {
         String keyword = searchBarChat.getText();
-        if (keyword.isBlank()) {
+        if (keyword.isEmpty()) {
             return;
         }
 

@@ -2027,4 +2027,60 @@ public class DatabaseManagment {
         }
     }
 
+    public ArrayList<UserAccount> getAccountRegistration(String startDate, String endDate,
+                                              String fullname, String sort, String by) {
+        String find = "";
+        if(!fullname.isEmpty()){
+            find += "WHERE FULLNAME LIKE '%" + fullname + "%' ";
+        }
+        if(!startDate.isEmpty()){
+            find += (find.isEmpty()) ? "WHERE " : "AND ";
+            find += "CREATED_AT >= '" + startDate + " 00:00:00' ";
+        }
+        if(!endDate.isEmpty()){
+            find += (find.isEmpty()) ? "WHERE " : "AND ";
+            find += "CREATED_AT <= '" + endDate + " 00:00:00' ";
+        }
+        String SELECT_QUERY = "SELECT * FROM USER_ACCOUNT "
+                + find
+                + "ORDER BY " + sort + " " + by;
+
+        ResultSet data = null;
+        try (PreparedStatement statment = conn.prepareStatement(SELECT_QUERY, ResultSet.TYPE_SCROLL_SENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);) {
+            data = statment.executeQuery();
+
+            ArrayList<UserAccount> accountList = new ArrayList<>();
+            if (!data.next()) {
+                return accountList;
+            } else {
+                do{
+                    UserAccount account = new UserAccount();
+                    account.setID(data.getInt("ID"));
+                    account.setUsername(data.getString("USERNAME"));
+                    account.setFullname(data.getString("FULLNAME"));
+                    Timestamp createdAt = data.getTimestamp("created_at");
+                    if (!data.wasNull()) {
+                        String formattedDate = new SimpleDateFormat("HH:mm yyyy-MM-dd").format(createdAt);
+                        account.setCreatedAt(formattedDate);
+                    } else
+                        account.setCreatedAt("");
+                    accountList.add(account);
+                } while (data.next());
+                return accountList;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (data != null) {
+                try {
+                    data.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
 }

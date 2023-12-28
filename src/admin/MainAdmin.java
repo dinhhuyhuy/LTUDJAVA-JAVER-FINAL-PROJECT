@@ -58,8 +58,8 @@ public class MainAdmin{
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.setEnabled(true);
-                GroupManagement gm = new GroupManagement();
-                gm.setVisible(true);
+                GroupManagement jfrGM = new GroupManagement();
+                jfrGM.setVisible(true);
             }
         });
         c.gridx = 2; c.gridy = 1; c.gridwidth = 1; c.weightx = 1.0;
@@ -83,7 +83,9 @@ public class MainAdmin{
         jbSignUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainFrame.setEnabled(true);
+                UserRegistration jfrUR = new UserRegistration();
+                jfrUR.setVisible(true);
             }
         });
         c.gridx = 1; c.gridy = 2; c.gridwidth = 1; c.weightx = 1.0;
