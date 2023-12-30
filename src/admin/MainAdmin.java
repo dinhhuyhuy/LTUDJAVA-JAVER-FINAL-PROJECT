@@ -126,7 +126,9 @@ public class MainAdmin{
         jbAction.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainFrame.setEnabled(true);
+                ActionMagament jfrAM = new ActionMagament();
+                jfrAM.setVisible(true);
             }
         });
         c.gridx = 1; c.gridy = 3; c.gridwidth = 1; c.weightx = 1.0;

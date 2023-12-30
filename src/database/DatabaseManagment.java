@@ -2083,4 +2083,88 @@ public class DatabaseManagment {
         }
         return null;
     }
+    public ArrayList<Action> getUserAction(String fullname, String login,
+                 String userChat, String groupChat, int compare, String sort, String by) {
+        String find = "";
+        if(!fullname.isEmpty()) {
+            find += "WHERE UA.FULLNAME LIKE '%" + fullname + "%' ";
+        }
+        String compareOperator;
+        switch (compare) {
+            case 1:
+                compareOperator = ">";
+                break;
+            case 2:
+                compareOperator = "<";
+                break;
+            case 3:
+                compareOperator = "=";
+                break;
+            default:
+                compareOperator = "";
+                break;
+        }
+        String having = "";
+        if(!compareOperator.isEmpty()){
+            if(!login.isEmpty()){
+                having += "HAVING COUNT(DISTINCT LH.*) " + compareOperator + " " +  login + " ";
+            }
+            if(!userChat.isEmpty()){
+                having += (having.isEmpty()) ? "HAVING " : "AND ";
+                having += "COUNT(distinct MU.id) " + compareOperator + " " +  userChat + " ";
+            }
+            if(!groupChat.isEmpty()){
+                having += (having.isEmpty()) ? "HAVING " : "AND ";
+                having += "COUNT(distinct MG.to_group) " + compareOperator + " " +  groupChat + " ";
+            }
+        }
+
+        String SELECT_QUERY = "SELECT UA.id as ID, UA.fullname as FULLNAME, "
+                + "COUNT(distinct LH.*) as LOGIN, "
+                + "COUNT(distinct MG.to_group) as GROUPS, "
+                + "COUNT(distinct MU.id) as USERS "
+                + "FROM user_account UA "
+                + "LEFT JOIN login_history LH ON LH.user_id = UA.id "
+                + "LEFT JOIN message_group MG ON MG.from_user = UA.id "
+                + "LEFT JOIN message_user MU ON MU.from_user = UA.id OR MU.to_user = UA.id "
+                + find
+                + "GROUP BY UA.id "
+                + having
+                + "ORDER BY " + sort + " " + by;
+        System.out.println(SELECT_QUERY);
+
+        ResultSet data = null;
+        try (PreparedStatement statment = conn.prepareStatement(SELECT_QUERY, ResultSet.TYPE_SCROLL_SENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);) {
+            data = statment.executeQuery();
+
+            ArrayList<Action> actionList = new ArrayList<>();
+            if (!data.next()) {
+                return actionList;
+            } else {
+                do{
+                    Action action = new Action();
+                    action.setID(data.getInt("ID"));
+                    action.setFullName(data.getString("FULLNAME"));
+                    action.setLogin(data.getInt("LOGIN"));
+                    action.setUserChat(data.getInt("USERS"));
+                    action.setGroupChat(data.getInt("GROUPS"));
+                    actionList.add(action);
+                } while (data.next());
+                return actionList;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (data != null) {
+                try {
+                    data.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
 }
