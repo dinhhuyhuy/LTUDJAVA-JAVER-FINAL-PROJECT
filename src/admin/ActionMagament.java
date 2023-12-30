@@ -46,7 +46,7 @@ public class ActionMagament extends JFrame {
          DefaultTableModel tableModel = new DefaultTableModel(col[0], 0);
          JTable jtAction = new JTable(tableModel);
         fillActionTable(jtAction, "", "", "", "", 0, "ID", "ASC");
-//         fillRegisterTable(jtRegister, "", "", "", "CREATED_AT", "DESC");
+
 
          JScrollPane jspMember = new JScrollPane(jtAction);
          jspMember.setPreferredSize(new Dimension(750, 520));

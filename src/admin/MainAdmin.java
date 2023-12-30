@@ -140,7 +140,9 @@ public class MainAdmin{
         jbActionChart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainFrame.setEnabled(true);
+                ActionChart jfrAC = new ActionChart();
+                jfrAC.setVisible(true);
             }
         });
         c.gridx = 2; c.gridy = 3; c.gridwidth = 1; c.weightx = 1.0;
