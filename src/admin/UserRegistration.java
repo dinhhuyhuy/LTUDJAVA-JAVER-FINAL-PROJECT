@@ -39,7 +39,7 @@ public class UserRegistration extends JFrame {
         //Tạo bảng đăng k mới
         JPanel jpTable = new JPanel();
         jpTable.setBackground(Color.white);
-        jpTable.setSize(800, 420);
+        jpTable.setSize(800, 570);
 
         final String[][] col = {{"ID", "Tên tài khoản", "Họ và tên", "Ngày đăng ký"}};
         DefaultTableModel tableModel = new DefaultTableModel(col[0], 0);
@@ -47,13 +47,13 @@ public class UserRegistration extends JFrame {
         fillRegisterTable(jtRegister, "", "", "", "CREATED_AT", "DESC");
 
         JScrollPane jspMember = new JScrollPane(jtRegister);
-        jspMember.setPreferredSize(new Dimension(750, 420));
+        jspMember.setPreferredSize(new Dimension(750, 570));
         jpTable.add(jspMember);
 
         //Chọn ngày đăng ký
         JPanel jpDate = new JPanel();
         jpDate.setBackground(Color.white);
-        jpDate.setSize(750, 100);
+        jpDate.setSize(750, 50);
 
         JLabel jlStart = new JLabel("Ngày bắt đầu: ");
         JTextField jtfStart = new JTextField(12);
@@ -68,7 +68,7 @@ public class UserRegistration extends JFrame {
         //Thông báo
         JPanel jpMessage = new JPanel();
         jpMessage.setBackground(Color.white);
-        jpMessage.setSize(750, 100);
+        jpMessage.setSize(750, 50);
 
         JLabel jlMessage = new JLabel("Thông báo: Nhập ngày theo cú pháp yyyy-mm-dd");
         jpMessage.add(jlMessage);
@@ -76,7 +76,7 @@ public class UserRegistration extends JFrame {
         //Tạo các filter
         JPanel jpSortBar = new JPanel();
         jpSortBar.setBackground(Color.white);
-        jpSortBar.setSize(750, 100);
+        jpSortBar.setSize(750, 50);
 
         JLabel jlSearch = new JLabel("Tìm kiếm: ");
         JTextField jtfSearch = new JTextField(30);
@@ -95,8 +95,8 @@ public class UserRegistration extends JFrame {
         jbSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String startDate = (checkDate(jtfStart.getText())) ? jtfStart.getText() : "";
-                String endDate = (checkDate(jtfEnd.getText())) ? jtfEnd.getText() : "";
+                String startDate = (Utils.checkDate(jtfStart.getText())) ? jtfStart.getText() : "";
+                String endDate = (Utils.checkDate(jtfEnd.getText())) ? jtfEnd.getText() : "";
                 String fullname = jtfSearch.getText();
                 int temp = jcSort.getSelectedIndex();
                 String sort = (temp == 0) ? "CREATED_AT" : "FULLNAME";
