@@ -77,7 +77,7 @@ public class Register extends JFrame {
 
 		return null;
 	}
-
+	
 	private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {
 
 		UserAccount account = registerAccount();

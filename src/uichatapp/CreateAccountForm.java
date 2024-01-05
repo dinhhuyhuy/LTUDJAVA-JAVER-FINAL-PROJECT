@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 import java.text.DateFormat;
@@ -432,12 +431,11 @@ public class CreateAccountForm extends javax.swing.JFrame {
     }
 
     // public static void main(String args[]) {
-
-    // java.awt.EventQueue.invokeLater(new Runnable() {
-    // public void run() {
-    // new CreateAccountForm().setVisible(true);
-    // }
-    // });
+        // java.awt.EventQueue.invokeLater(new Runnable() {
+                // public void run() {
+                        // new CreateAccountForm().setVisible(true);
+                // }
+        // }); 
     // }
 
     private javax.swing.JLabel jLabel_diachi;

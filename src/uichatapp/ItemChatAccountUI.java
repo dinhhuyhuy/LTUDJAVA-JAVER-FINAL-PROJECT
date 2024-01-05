@@ -1,10 +1,8 @@
-
 package uichatapp;
 
 import java.awt.Color;
 
 public class ItemChatAccountUI extends javax.swing.JPanel {
-
     public boolean isSeleted() {
         return seleted;
     }
@@ -37,7 +35,6 @@ public class ItemChatAccountUI extends javax.swing.JPanel {
     }
 
     private void initComponents() {
-
         name = new javax.swing.JLabel();
         status = new javax.swing.JLabel();
 
@@ -74,7 +71,6 @@ public class ItemChatAccountUI extends javax.swing.JPanel {
                                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap()));
     }
-
     private javax.swing.JLabel name;
     private javax.swing.JLabel status;
 }

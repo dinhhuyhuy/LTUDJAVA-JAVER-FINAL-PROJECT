@@ -27,7 +27,6 @@ public class ChatMessageBlock extends JPanel {
     final static public int MINE = 1;
 
     public ChatMessageBlock(String name, String time, int align, String message) {
-
         this.align = align;
         if (this.align == OTHER)
             this.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -47,7 +46,6 @@ public class ChatMessageBlock extends JPanel {
 
     public void setBackgroundColor(Color color) {
         backgroundColor = color;
-
     }
 
     public void setText(String message) {

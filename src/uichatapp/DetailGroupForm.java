@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 import java.awt.event.ActionEvent;
@@ -12,7 +11,6 @@ import datastructure.UserAccount;
 import datastructure.GroupChat;
 
 import utils.Utils;
-
 
 public class DetailGroupForm extends javax.swing.JFrame {
 
@@ -40,8 +38,6 @@ public class DetailGroupForm extends javax.swing.JFrame {
             tableModel.addRow(row);
         }
     }
-
-
 
     public DetailGroupForm(GroupChat groupChat) {
         initComponents();
@@ -72,8 +68,6 @@ public class DetailGroupForm extends javax.swing.JFrame {
         });
     }
 
-    
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -145,12 +139,7 @@ public class DetailGroupForm extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-        // filltableListAccount();
-    }// </editor-fold>//GEN-END:initComponents
-
-    // private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-    //    parentFrame.setEnabled(true);
-    // }//GEN-LAST:event_formWindowClosing
+    }
 
     /**
      * @param args the command line arguments
@@ -177,14 +166,6 @@ public class DetailGroupForm extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DetailGroupForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-    //    java.awt.EventQueue.invokeLater(new Runnable() {
-    //        public void run() {
-    //            new DetailGroupForm().setVisible(true);
-    //        }
-    //    });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

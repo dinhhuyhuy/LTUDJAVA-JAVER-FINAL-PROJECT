@@ -129,16 +129,13 @@ public class ChatBoxGroup extends ChatBoxLayout {
             }
         });
         viewGroupInforButton.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewGroupDetail();
             }
-
         });
 
         searchBarChat.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 findMessageGroup();
@@ -147,12 +144,10 @@ public class ChatBoxGroup extends ChatBoxLayout {
         });
 
         inputChatTextArea.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 sendMessage();
             }
-
         });
     }
 

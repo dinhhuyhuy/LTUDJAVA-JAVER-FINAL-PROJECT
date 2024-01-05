@@ -13,7 +13,6 @@ import datastructure.UserAccount;
 import utils.Utils;
 
 public class AddFriendToGroup extends javax.swing.JFrame {
-
     private GroupChat groupChat;
     private int userID;
     private javax.swing.JButton addToGroupButton;
@@ -42,7 +41,7 @@ public class AddFriendToGroup extends javax.swing.JFrame {
             tableModel.addRow(row);
         }
     }
-
+    // thêm thành viên vào nhóm
     public void addMemberToGroup() {
         int row = tabelFriendList.getSelectedRow();
         if (row < 0) {
@@ -58,7 +57,7 @@ public class AddFriendToGroup extends javax.swing.JFrame {
         filltabelFriendList();
         parentFrame.fillTableMember();
     }
-
+    // thêm thành viên vào nhóm
     public AddFriendToGroup(DetailGroupChatForm parentFrame, GroupChat groupChat, int userID) {
         initComponents();
         this.parentFrame = parentFrame;
@@ -210,12 +209,10 @@ public class AddFriendToGroup extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-
-        /* Create and display the form */
         // java.awt.EventQueue.invokeLater(new Runnable() {
-        // public void run() {
-        // new AddFriendToGroup().setVisible(true);
-        // }
+        //     public void run() {
+        //         new AddFriendToGroup(null, null, 0).setVisible(true);
+        //     }
         // });
     }
 

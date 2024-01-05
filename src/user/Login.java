@@ -27,9 +27,8 @@ import java.awt.Cursor;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-
+// ! WARNING: KHÔNG CHỈNH SỬA FILE NÀY, ĐANG LÀM VIỆC SOCKET
 public class Login extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField txtUser; // chứa tên đăng nhập
 	private JPasswordField txtPass; // chứa mật khẩu
@@ -43,7 +42,6 @@ public class Login extends JFrame {
 	private UserAccount socketTemp;
 
 	// ! WARNING: KHÔNG CHỈNH SỬA FILE NÀY, ĐANG LÀM VIỆC SOCKET
-
 	private UserAccount loginAccount() {
 		String username, password;
 		username = new String(txtUser.getText());
@@ -52,7 +50,7 @@ public class Login extends JFrame {
 			JOptionPane.showMessageDialog(null, "Please enter all required fields!");
 			return null;
 		}
-
+		
 		DatabaseManagment db = DatabaseManagment.getInstance();
 		UserAccount account = db.getDetailAccount(username);
 		if (account == null) {
@@ -86,7 +84,7 @@ public class Login extends JFrame {
 		}
 
 	}
-
+	
 	private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
 
 		UserAccount account = loginAccount();
@@ -139,19 +137,6 @@ public class Login extends JFrame {
 		this.dispose();
 	}
 
-	// public static void main(String[] args) {
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// try {
-	// Login frame = new Login();
-	// frame.setVisible(true);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	// }
-
 	public Login(Socket clienSocket, PrintWriter pw, BufferedReader br) {
 		initComponent();
 		socketTemp = new UserAccount();
@@ -178,8 +163,8 @@ public class Login extends JFrame {
 		});
 
 	}
-
 	private void initComponent() {
+		// TODO Auto-generated method stub
 		setTitle("Đăng nhập tài khoản");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 810, 564);
@@ -187,16 +172,16 @@ public class Login extends JFrame {
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
-
+		// setUndecorated(true);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		// contentPane.setBackground(new Color(255, 255, 255));
 		btnLogin = new JButton("Đăng nhập");
 		btnLogin.setBackground(Color.BLACK);
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnLogin.setBounds(272, 380, 297, 39);
 		contentPane.add(btnLogin);
-
+		// btnBack.setText("Quay về");
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setForeground(Color.LIGHT_GRAY);
 		lblLogo.setBackground(Color.LIGHT_GRAY);
@@ -204,18 +189,18 @@ public class Login extends JFrame {
 		lblLogo.setIcon(new ImageIcon(Login.class.getResource("/resource/chat.png")));
 		lblLogo.setBounds(313, 20, 226, 117);
 		contentPane.add(lblLogo);
-
+		//Đăng nhập
 		JLabel lblLogin = new JLabel("Đăng nhập tài khoản");
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblLogin.setBounds(313, 156, 226, 28);
 		contentPane.add(lblLogin);
-
+		
 		lblUser = new JLabel("Tên đăng nhập");
 		lblUser.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		lblUser.setBounds(272, 190, 226, 28);
 		contentPane.add(lblUser);
-
+		
 		txtUser = new JTextField();
 		txtUser.setMargin(new Insets(10, 15, 10, 10));
 		txtUser.setBackground(Color.WHITE);
@@ -225,7 +210,7 @@ public class Login extends JFrame {
 		txtUser.setBounds(272, 215, 297, 48);
 		contentPane.add(txtUser);
 		txtUser.setColumns(10);
-
+		
 		JCheckBox chckbxRememberPass = new JCheckBox("   Ghi nhớ tài khoản");
 		chckbxRememberPass.setForeground(Color.GRAY);
 		chckbxRememberPass.setBackground(Color.WHITE);
@@ -246,14 +231,14 @@ public class Login extends JFrame {
 		txtPass.setColumns(10);
 		txtPass.setBounds(272, 290, 297, 48);
 		contentPane.add(txtPass);
-
+		//Đăng ký
 		lblCreateAcc = new JLabel("Tạo tài khoản mới");
 		lblCreateAcc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCreateAcc.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblCreateAcc.setBounds(272, 471, 297, 26);
 		lblCreateAcc.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		contentPane.add(lblCreateAcc);
-
+		//Quên mật khẩu
 		lblForgetPass = new JLabel("Quên mật khẩu?");
 		lblForgetPass.setForeground(new Color(128, 128, 128));
 		lblForgetPass.setHorizontalAlignment(SwingConstants.CENTER);

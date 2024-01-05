@@ -20,7 +20,6 @@ public class ChatBoxLayout extends JPanel {
     protected UserAccount user;
 
     public void addMessage(ChatMessageBlock messageBlock) {
-
         displayChat.addMessage(messageBlock);
     }
 
@@ -50,9 +49,6 @@ public class ChatBoxLayout extends JPanel {
     public void createInput(JPanel layout) {
         inputChatTextArea.setColumns(20);
         inputChatTextArea.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        // inputChatTextArea.setLineWrap(true);
-        // inputChatTextArea.setRows(5);
-        // inputChatTextArea.setWrapStyleWord(true);
         JScrollPane inputChatScollPane = new JScrollPane();
         inputChatScollPane.setViewportView(inputChatTextArea);
 

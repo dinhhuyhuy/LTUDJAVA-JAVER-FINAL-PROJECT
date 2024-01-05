@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 import java.awt.GridBagConstraints;
@@ -368,15 +367,11 @@ public class DetailGroupChatForm extends javax.swing.JFrame {
     }
 
     // public static void main(String args[]) {
-
-    // java.awt.EventQueue.invokeLater(new Runnable() {
-    // public void run() {
-    // DatabaseManagment database = DatabaseManagment.getInstance();
-    // GroupChat testGroup = database.getDetailGroupChat(1);
-
-    // new DetailGroupChatForm(testGroup,true,1).setVisible(true);
-    // }
-    // });
+        // java.awt.EventQueue.invokeLater(new Runnable() {
+            // public void run() {
+                // new DetailGroupChatForm().setVisible(true);
+                // }
+        // });
     // }
 
     // Variables declaration - do not modify

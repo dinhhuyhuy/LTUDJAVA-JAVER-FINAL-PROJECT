@@ -4,7 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "type": "java",
+            "name": "Server",
+            "request": "launch",
+            "mainClass": "chatapp.Server",
+            "projectName": "LTUDJAVA-JAVER-FINAL-PROJECT_444fb928"
+        },
         {
             "type": "java",
             "name": "Login",
@@ -66,7 +72,7 @@
             "request": "launch",
             "mainClass": "chatapp.Server",
             "projectName": "LTUDJAVA-JAVER-FINAL-PROJECT_65942475"
-        },
+        }
     ],
     "compounds": [
         {
