@@ -11,14 +11,13 @@ import datastructure.UserAccount;
 import uichatapp.ChangeInforForm;
 
 public class MainUser extends javax.swing.JFrame implements Runnable {
-
     private final Color activeTabColor = new Color(239, 239, 239);
     private final Color unactiveTabColor = new Color(217, 217, 217);
     private UserAccount user;
     MenuChat menuChatLayout;
     MenuAddFriend menuFriendLayout;
     MenuGroup menuGroupLayout;
-
+    // Compare this snippet from src/user/MainUser.java:
     @Override
     public void run() {
         try {
@@ -70,8 +69,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
+    }// GEN-LAST:event_formWindowClosing
     public MainUser(UserAccount user) {
         initComponents();
         this.user = user;
@@ -109,7 +107,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
         });
 
     }
-
+    
     private void initComponents() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -131,6 +129,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
             java.util.logging.Logger.getLogger(MainUser.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
+        
         jPanel1 = new javax.swing.JPanel();
         navbar = new javax.swing.JPanel();
         userNameLabel = new javax.swing.JLabel();
@@ -146,26 +145,33 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
         setTitle("Ứng dụng chat");
         setMinimumSize(new java.awt.Dimension(1440, 750));
         setResizable(false);
-
+        // setUndecorated(true);
+        // setOpacity(0.9F);
+        // setShape(new RoundRectangle2D.Double(0, 0, 1440, 750, 50, 50));
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
-
+        // jPanel1.setBackground(new Color(255, 255, 255));
+        // jPanel1.setBorder(new EmptyBorder(5, 5, 5, 5));
+        // setLocationRelativeTo(null);
         navbar.setBackground(new java.awt.Color(217, 217, 217));
         navbar.setPreferredSize(new java.awt.Dimension(170, 200));
-
+        // navbar.setBackground(new Color(217, 217, 217));
+        // navbar.setBorder(new EmptyBorder(5, 5, 5, 5));
+        // setLocationRelativeTo(null);
         userNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         userNameLabel.setForeground(new java.awt.Color(0, 0, 0));
         userNameLabel.setText("User");
-
+        // userNameLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        // userNameLabel.setForeground(new Color(0, 0, 0));
         jTabButton1.setBackground(new java.awt.Color(239, 239, 239));
         jTabButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabButton1MouseClicked(evt);
             }
         });
-
+        
         jTabButton1_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat.png"))); // NOI18N
-
+        
         javax.swing.GroupLayout jTabButton1Layout = new javax.swing.GroupLayout(jTabButton1);
         jTabButton1.setLayout(jTabButton1Layout);
         jTabButton1Layout.setHorizontalGroup(
@@ -187,7 +193,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
                 jTabButton2MouseClicked(evt);
             }
         });
-
+        
         jTabButton2_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat.png"))); // NOI18N
 
         javax.swing.GroupLayout jTabButton2Layout = new javax.swing.GroupLayout(jTabButton2);
