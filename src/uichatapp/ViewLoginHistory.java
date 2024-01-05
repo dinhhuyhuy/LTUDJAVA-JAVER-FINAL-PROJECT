@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ public class ViewLoginHistory extends javax.swing.JFrame {
             tableModel.addRow(row);
             index += 1;
         }
-
     }
 
     public ViewLoginHistory(UserAccount user) {
@@ -136,15 +134,11 @@ public class ViewLoginHistory extends javax.swing.JFrame {
     }
 
     // public static void main(String args[]) {
-
-    // java.awt.EventQueue.invokeLater(new Runnable() {
-    // public void run() {
-    // DatabaseManagment database = DatabaseManagment.getInstance();
-    // UserAccount testAccount = database.getDetailAccount(1);
-
-    // new ViewLoginHistory(testAccount).setVisible(true);
-    // }
-    // });
+        //     java.awt.EventQueue.invokeLater(new Runnable() {
+        //         public void run() {
+        //             new ViewLoginHistory().setVisible(true);
+        //         }
+        //     });
     // }
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelUsername;

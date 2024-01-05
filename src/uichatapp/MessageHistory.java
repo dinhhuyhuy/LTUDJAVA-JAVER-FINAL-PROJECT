@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 import java.util.ArrayList;
@@ -6,7 +5,6 @@ import java.util.ArrayList;
 import datastructure.Message;
 
 public class MessageHistory extends javax.swing.JPanel {
-
     private uichatapp.ChatMessageDisplay chatMessageDisplay1;
     private javax.swing.JLabel jLabelKeyword;
     private String username;
@@ -34,7 +32,6 @@ public class MessageHistory extends javax.swing.JPanel {
     }
 
     private void initComponents() {
-
         chatMessageDisplay1 = new uichatapp.ChatMessageDisplay();
         jLabel1 = new javax.swing.JLabel();
         jLabelKeyword = new javax.swing.JLabel();
@@ -80,16 +77,11 @@ public class MessageHistory extends javax.swing.JPanel {
     }
 
     // public static void main(String[] args) {
-    // SwingUtilities.invokeLater(new Runnable() {
-
-    // @Override
-    // public void run() {
-    // MessageHistory pHistory = new MessageHistory();
-    // JOptionPane.showMessageDialog(null, pHistory, "test",
-    // JOptionPane.PLAIN_MESSAGE);
-
+        // java.awt.EventQueue.invokeLater(new Runnable() {
+        // public void run() {
+        // new MessageHistory().setVisible(true);
+        // }
     // }
-
     // });
     // }
 

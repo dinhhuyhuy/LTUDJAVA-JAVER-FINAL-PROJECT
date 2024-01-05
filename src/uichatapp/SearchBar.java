@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 import java.awt.Color;
@@ -22,7 +21,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 public class SearchBar extends JTextField {
-
     private Color backgroundColor = Color.WHITE;
     private Color buttonColor;
     private String placeHolder;
@@ -115,7 +113,6 @@ public class SearchBar extends JTextField {
         Image image = ((ImageIcon) iconSearch).getImage();
         g2D.drawImage(image, width - height + marginImage + 3, marginButton + marginImage, imageSize, imageSize, null);
         g2D.dispose();
-
     }
 
     @Override
@@ -144,7 +141,5 @@ public class SearchBar extends JTextField {
         Point point = new Point(width - height + 3, marginButton);
         Ellipse2D.Double circle = new Ellipse2D.Double(point.x, point.y, buttonSize, buttonSize);
         return circle.contains(mouse);
-
     }
-
 }

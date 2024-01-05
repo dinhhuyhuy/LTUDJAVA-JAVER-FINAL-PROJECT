@@ -1,5 +1,4 @@
-
- package uichatapp;
+package uichatapp;
 
  import java.awt.Color;
  import java.awt.Component;
@@ -12,68 +11,68 @@
 
  import datastructure.UserAccount;
 
- public class ListItemChatAccount<E extends Object> extends JList<E> {
+public class ListItemChatAccount<E extends Object> extends JList<E> {
 
  private final DefaultListModel model;
  private Color seletedColor;
 
  public Color getSeletedColor() {
- return seletedColor;
+    return seletedColor;
  }
 
  public void setSeletedColor(Color seletedColor) {
- this.seletedColor = seletedColor;
+    this.seletedColor = seletedColor;
  }
 
  public ListItemChatAccount() {
- model = new DefaultListModel();
- setModel(model);
+    model = new DefaultListModel();
+    setModel(model);
  }
 
  @Override
  public ListCellRenderer getCellRenderer() {
- return new DefaultListCellRenderer() {
- @Override
- public Component getListCellRendererComponent(JList<?> list, Object value,
- int index, boolean isSelected,
- boolean cellHasFocus) {
- ItemChatAccountUI itemChatAccountUI = new ItemChatAccountUI();
+    return new DefaultListCellRenderer() {
+    @Override
+    public Component getListCellRendererComponent(JList<?> list, Object value,
+    int index, boolean isSelected,
+    boolean cellHasFocus) {
+    ItemChatAccountUI itemChatAccountUI = new ItemChatAccountUI();
 
- itemChatAccountUI.setItem(value);
- itemChatAccountUI.setSeleted(isSelected);
- if (isSelected) {
- itemChatAccountUI.setBackground(seletedColor);
- }
- return itemChatAccountUI;
- }
+    itemChatAccountUI.setItem(value);
+    itemChatAccountUI.setSeleted(isSelected);
+    if (isSelected) {
+    itemChatAccountUI.setBackground(seletedColor);
+    }
+    return itemChatAccountUI;
+    }
 
- };
+    };
  }
 
  public void addItem(ItemChatAccount item) {
- model.addElement(item);
+    model.addElement(item);
  }
 
  public void clearList() {
- model.removeAllElements();
+    model.removeAllElements();
  }
 
  public ArrayList<UserAccount> getAllItem() {
- ArrayList<UserAccount> itemList = new ArrayList<>();
- for (int i = 0; i < model.getSize(); i++) {
- ItemChatAccount item = (ItemChatAccount) model.getElementAt(i);
- UserAccount account = new UserAccount();
- account.setUsername(item.getName());
- account.setID(item.getID());
- account.setOnline(item.getStatus());
- itemList.add(account);
- }
- return itemList;
+    ArrayList<UserAccount> itemList = new ArrayList<>();
+    for (int i = 0; i < model.getSize(); i++) {
+    ItemChatAccount item = (ItemChatAccount) model.getElementAt(i);
+    UserAccount account = new UserAccount();
+    account.setUsername(item.getName());
+    account.setID(item.getID());
+    account.setOnline(item.getStatus());
+    itemList.add(account);
+    }
+    return itemList;
  }
 
  public int getIDSelected(int index) {
- ItemChatAccount item = (ItemChatAccount) model.getElementAt(index);
- return item.getID();
+    ItemChatAccount item = (ItemChatAccount) model.getElementAt(index);
+    return item.getID();
  }
 
- }
+}
