@@ -1,7 +1,5 @@
 package datastructure;
 
-import admin.ActionMagament;
-
 public class Action {
     private int ID;
     private String fullname;
