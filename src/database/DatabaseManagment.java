@@ -13,6 +13,7 @@ import datastructure.GroupChat;
 import datastructure.LoginHistory;
 import datastructure.Message;
 import datastructure.UserAccount;
+import datastructure.*;
 
 public class DatabaseManagment {
 
