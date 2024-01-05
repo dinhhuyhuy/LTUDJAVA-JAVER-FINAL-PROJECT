@@ -1,4 +1,3 @@
-
 package user;
 
 import java.awt.event.ActionEvent;
@@ -21,18 +20,26 @@ import uichatapp.SearchBar;
 import utils.Utils;
 
 public class MenuAddFriend extends JPanel {
-
+    // TODO: 1. Tìm kiếm bạn bè
+    // TODO: 2. Gửi lời mời kết bạn
+    // TODO: 3. Xử lý lời mời kết bạn
+    // TODO: 4. Xem danh sách bạn bè
+    // TODO: 5. Xem danh sách lời mời kết bạn
+    // TODO: 6. Xem danh sách bạn chung
+    // TODO: 7. Xem danh sách bạn chặn
+    // TODO: 8. Xem danh sách người theo dõi
+    // TODO: 9. Xem danh sách người được theo dõi
     SearchBar searchBarFindFriendRequest;
     SearchBar searchBarFindNewFriend;
     JButton responeRequestButton;
     JButton addfriendButton;
     JTable tableFindFriend;
     JTable tableListFriendRequest;
-
+    
     UserAccount user;
     ArrayList<UserAccount> listAccountFindFriends;
     ArrayList<UserAccount> listAccountRequestFriends;
-
+    
     public void filltableFindFriend() {
         String searchName;
 
@@ -67,9 +74,8 @@ public class MenuAddFriend extends JPanel {
             System.out.println(e.getMessage());
         }
     }
-
+    
     public void filltableListFriendRequest() {
-
         String searchName;
 
         Utils.clearTable(tableListFriendRequest);

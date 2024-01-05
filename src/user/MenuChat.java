@@ -1,4 +1,3 @@
-
 package user;
 
 import java.awt.event.ActionEvent;
@@ -23,7 +22,6 @@ import uichatapp.ItemChatAccount;
 import uichatapp.ListItemChatAccount;
 
 public class MenuChat extends JPanel {
-
     public JButton refreshButton;
     public ListItemChatAccount<String> listFriendJlist;
     public JTabbedPane chatLayout;
@@ -32,6 +30,7 @@ public class MenuChat extends JPanel {
     private HashMap<String, ChatBoxUser> chatUser;
     private HashMap<Integer, ChatBoxGroup> chatGroup;
 
+    // fill friend list
     public void fillFriendList() {
 
         ArrayList<UserAccount> onlineUser = database.getFriendArrayListByOnline(user.getID());
@@ -123,7 +122,7 @@ public class MenuChat extends JPanel {
             chatLayout.setSelectedIndex(0);
         }
     }
-
+    // add message to chatbox
     public void addMessageToChatboxUser(String[] allMessage) {
         String chatBoxID = ChatBoxUser.createChatBoxUserID(user.getID(), Integer.parseInt(allMessage[1]));
         ChatBoxUser chatBoxToDisplay = chatUser.get(chatBoxID);
@@ -132,7 +131,7 @@ public class MenuChat extends JPanel {
         newMessage.setContent(allMessage[3]);
         chatBoxToDisplay.addMessage(newMessage);
     }
-
+    // add message to chatbox group
     public void addMessageToChatboxGroup(String[] allMessage) {
         int chatBoxID = Integer.parseInt(allMessage[1]);
         ChatBoxGroup chatBoxToDisplay = chatGroup.get(chatBoxID);
@@ -142,14 +141,14 @@ public class MenuChat extends JPanel {
         newMessage.setContent(allMessage[4]);
         chatBoxToDisplay.addMessage(newMessage);
     }
-
+    // add message to chatbox group
     public void resetData() {
         System.out.println("reset");
         chatUser.clear();
         chatGroup.clear();
         fillFriendList();
     }
-
+    // constructor
     public MenuChat(UserAccount account) {
         initComponents();
         user = account;
@@ -168,7 +167,7 @@ public class MenuChat extends JPanel {
         });
 
     }
-
+    // init component
     private void initComponents() {
         this.setBackground(new java.awt.Color(255, 255, 255));
         this.setLayout(null);
@@ -221,16 +220,13 @@ public class MenuChat extends JPanel {
         this.add(sidePanel);
         this.add(chatLayout);
     }
-
+    // add to list friend jlist
     public void addToListFriendJlist(ItemChatAccount item) {
         listFriendJlist.addItem(item);
     }
-
+    // add to chat layout
     public void listFriendJlistValueChanged(ListSelectionEvent e) {
         int index = listFriendJlist.getSelectedIndex();
-
         chatLayout.setSelectedIndex(index);
-
     }
-
 }
