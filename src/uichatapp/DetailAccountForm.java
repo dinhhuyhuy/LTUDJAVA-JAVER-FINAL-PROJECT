@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 import java.awt.GridBagConstraints;
@@ -21,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import admin.MenuAccountManager;
-// import adminchatapp.MenuAccountManager;
+
 import database.DatabaseManagment;
 import datastructure.UserAccount;
 import utils.PasswordService;
@@ -104,58 +103,58 @@ public class DetailAccountForm extends javax.swing.JFrame {
 
         // TODO 3: thay đổi mật khẩu (done)
 
-private void changePassword() {
-DatabaseManagment database = DatabaseManagment.getInstance();
-JPanel changePasswordPanel = new JPanel();
-JLabel oldLabel = new JLabel("Mật khẩu cũ :");
-JTextField oldPasswordField = new JTextField(20);
-JLabel newLabel = new JLabel("Mật khẩu mới :");
-JTextField newPasswordField = new JTextField(20);
+        private void changePassword() {
+                DatabaseManagment database = DatabaseManagment.getInstance();
+                JPanel changePasswordPanel = new JPanel();
+                JLabel oldLabel = new JLabel("Mật khẩu cũ :");
+                JTextField oldPasswordField = new JTextField(20);
+                JLabel newLabel = new JLabel("Mật khẩu mới :");
+                JTextField newPasswordField = new JTextField(20);
 
-changePasswordPanel.setLayout(new GridBagLayout());
-GridBagConstraints cs = new GridBagConstraints();
+                changePasswordPanel.setLayout(new GridBagLayout());
+                GridBagConstraints cs = new GridBagConstraints();
 
-cs.fill = GridBagConstraints.HORIZONTAL;
-cs.insets = new Insets(10, 5, 5, 5);
-cs.gridx = 0;
-cs.gridy = 0;
-changePasswordPanel.add(oldLabel, cs);
-cs.gridx = 1;
-changePasswordPanel.add(oldPasswordField, cs);
-cs.gridx = 0;
-cs.gridy = 1;
-changePasswordPanel.add(newLabel, cs);
-cs.gridx = 1;
-changePasswordPanel.add(newPasswordField, cs);
+                cs.fill = GridBagConstraints.HORIZONTAL;
+                cs.insets = new Insets(10, 5, 5, 5);
+                cs.gridx = 0;
+                cs.gridy = 0;
+                changePasswordPanel.add(oldLabel, cs);
+                cs.gridx = 1;
+                changePasswordPanel.add(oldPasswordField, cs);
+                cs.gridx = 0;
+                cs.gridy = 1;
+                changePasswordPanel.add(newLabel, cs);
+                cs.gridx = 1;
+                changePasswordPanel.add(newPasswordField, cs);
 
-if (JOptionPane.showConfirmDialog(null, changePasswordPanel, "Change password", JOptionPane.OK_CANCEL_OPTION,
-JOptionPane.PLAIN_MESSAGE) == JOptionPane.OK_OPTION) {
+                if (JOptionPane.showConfirmDialog(null, changePasswordPanel, "Change password", JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE) == JOptionPane.OK_OPTION) {
 
-// Code here
-String oldPass = oldPasswordField.getText().toString().trim();
-String newPass = newPasswordField.getText().toString().trim();
+                        // Code here
+                        String oldPass = oldPasswordField.getText().toString().trim();
+                        String newPass = newPasswordField.getText().toString().trim();
 
-if (newPass.equals(oldPass)) {
-JOptionPane.showMessageDialog(null, "New password should be different from old password!",
-"Change password", JOptionPane.WARNING_MESSAGE);
-return;
-}
+                        if (newPass.equals(oldPass)) {
+                                JOptionPane.showMessageDialog(null, "New password should be different from old password!",
+                                "Change password", JOptionPane.WARNING_MESSAGE);
+                                return;
+                        }
 
-if (PasswordService.verifyPassword(oldPass, user.getPassword())) {
+                        if (PasswordService.verifyPassword(oldPass, user.getPassword())) {
 
-String encryptPassword = PasswordService.encryptPassword(newPass);
-database.changePasswordUser(user.getID(), encryptPassword);
-JOptionPane.showMessageDialog(null, "Completed!", "Change password",
-JOptionPane.INFORMATION_MESSAGE);
-return;
-} else {
-JOptionPane.showMessageDialog(null, "Old password is incorrect!", "Change password",
-JOptionPane.WARNING_MESSAGE);
-return;
-}
-}
+                                String encryptPassword = PasswordService.encryptPassword(newPass);
+                                database.changePasswordUser(user.getID(), encryptPassword);
+                                JOptionPane.showMessageDialog(null, "Completed!", "Change password",
+                                JOptionPane.INFORMATION_MESSAGE);
+                                return;
+                        } else {
+                                JOptionPane.showMessageDialog(null, "Old password is incorrect!", "Change password",
+                                JOptionPane.WARNING_MESSAGE);
+                                return;
+                        }
+                }
 
-}
+        }
 
         // TODO 1: Khóa tài khoản
 

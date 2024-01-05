@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 import java.awt.Color;
@@ -46,7 +45,6 @@ public class ChatMessageDisplay extends JScrollPane {
         marginTopBottom = 10;
         marginLeftRight = 60;
         initComponent();
-
     }
 
     private void initComponent() {
@@ -54,7 +52,6 @@ public class ChatMessageDisplay extends JScrollPane {
         messagePanel.setBackground(backgroundColor);
         this.setBorder(BorderFactory.createEmptyBorder());
         this.setViewportView(messagePanel);
-
     }
 
     public void addMessage(ChatMessageBlock newMessageBlock) {
@@ -71,5 +68,4 @@ public class ChatMessageDisplay extends JScrollPane {
         messagePanel.scrollRectToVisible(rect);
         row += 1;
     }
-
 }

@@ -1,4 +1,3 @@
-
 package uichatapp;
 
 public class ItemChatAccount {

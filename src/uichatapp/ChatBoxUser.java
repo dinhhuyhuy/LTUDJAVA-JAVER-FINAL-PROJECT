@@ -138,7 +138,6 @@ public class ChatBoxUser extends ChatBoxLayout {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sendMessage();
-
             }
         });
 
@@ -147,9 +146,7 @@ public class ChatBoxUser extends ChatBoxLayout {
             @Override
             public void actionPerformed(ActionEvent e) {
                 unfriend();
-
             }
-
         });
 
         searchBarChat.addActionListener(new ActionListener() {
@@ -158,7 +155,6 @@ public class ChatBoxUser extends ChatBoxLayout {
             public void actionPerformed(ActionEvent e) {
                 findMessageUser();
             }
-
         });
 
         deleteHistoryJLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -175,9 +171,7 @@ public class ChatBoxUser extends ChatBoxLayout {
             public void actionPerformed(ActionEvent e) {
                 sendMessage();
             }
-
         });
-
     }
 
     public static String createChatBoxUserID(int firstID, int secondID) {
@@ -197,5 +191,4 @@ public class ChatBoxUser extends ChatBoxLayout {
         this.addMessage(new ChatMessageBlock(other.getUsername(), message.getDateSend(), ChatMessageBlock.OTHER,
                 message.getContent()));
     }
-
 }
