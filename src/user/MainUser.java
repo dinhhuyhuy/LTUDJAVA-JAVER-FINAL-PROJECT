@@ -218,7 +218,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jTabButton_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat. (3).png"))); // NOI18N
+        jTabButton_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat.png"))); // NOI18N
 
         javax.swing.GroupLayout jTabButton3Layout = new javax.swing.GroupLayout(jTabButton3);
         jTabButton3.setLayout(jTabButton3Layout);
