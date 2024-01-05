@@ -17,6 +17,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
     MenuChat menuChatLayout;
     MenuAddFriend menuFriendLayout;
     MenuGroup menuGroupLayout;
+
     // Compare this snippet from src/user/MainUser.java:
     @Override
     public void run() {
@@ -70,6 +71,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
             e.printStackTrace();
         }
     }// GEN-LAST:event_formWindowClosing
+
     public MainUser(UserAccount user) {
         initComponents();
         this.user = user;
@@ -107,7 +109,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
         });
 
     }
-    
+
     private void initComponents() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -129,7 +131,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
             java.util.logging.Logger.getLogger(MainUser.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
-        
+
         jPanel1 = new javax.swing.JPanel();
         navbar = new javax.swing.JPanel();
         userNameLabel = new javax.swing.JLabel();
@@ -169,9 +171,9 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
                 jTabButton1MouseClicked(evt);
             }
         });
-        
+
         jTabButton1_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat.png"))); // NOI18N
-        
+
         javax.swing.GroupLayout jTabButton1Layout = new javax.swing.GroupLayout(jTabButton1);
         jTabButton1.setLayout(jTabButton1Layout);
         jTabButton1Layout.setHorizontalGroup(
@@ -193,7 +195,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
                 jTabButton2MouseClicked(evt);
             }
         });
-        
+
         jTabButton2_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat.png"))); // NOI18N
 
         javax.swing.GroupLayout jTabButton2Layout = new javax.swing.GroupLayout(jTabButton2);
@@ -218,7 +220,7 @@ public class MainUser extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jTabButton_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat.png"))); // NOI18N
+        jTabButton_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/chat. (3).png"))); // NOI18N
 
         javax.swing.GroupLayout jTabButton3Layout = new javax.swing.GroupLayout(jTabButton3);
         jTabButton3.setLayout(jTabButton3Layout);
