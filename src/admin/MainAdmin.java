@@ -71,7 +71,9 @@ public class MainAdmin{
         jbSpam.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                mainFrame.setEnabled(true);
+                SpamReportManagement jfrSR = new SpamReportManagement();
+                jfrSR.setVisible(true);
             }
         });
         c.gridx = 0; c.gridy = 2; c.gridwidth = 1; c.weightx = 1.0;

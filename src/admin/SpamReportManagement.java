@@ -42,7 +42,6 @@ public class SpamReportManagement extends JFrame{
         ResultSet rs = null;
         try (PreparedStatement statment = conn.prepareStatement(SELECT_QUERY, ResultSet.TYPE_SCROLL_SENSITIVE,
                 ResultSet.CONCUR_READ_ONLY);) {
-            System.out.println(SELECT_QUERY);
             rs = statment.executeQuery();
 
             while(rs.next()){
@@ -180,12 +179,12 @@ public class SpamReportManagement extends JFrame{
         this.add(jpLockUser);
 
     }
-    public static void main(String [] args){
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new SpamReportManagement().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String [] args){
+//        SwingUtilities.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new SpamReportManagement().setVisible(true);
+//            }
+//        });
+//    }
 }
