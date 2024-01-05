@@ -22,7 +22,7 @@ public class DatabaseManagment {
     public Connection getConnection() {
         return conn;
     }
-
+    // Khởi tạo database
     private DatabaseManagment() {
         try {
             String databaseName = DatabaseConfig.databaseName;
@@ -51,7 +51,7 @@ public class DatabaseManagment {
         }
         return instance;
     }
-
+    // Thêm tài khoản mới vào database
     public int addNewAccount(UserAccount account) {
         if (account.isEmpty()) {
             System.out.println("account information is empty");
@@ -89,7 +89,7 @@ public class DatabaseManagment {
 
         return -1;
     }
-
+    // Thêm tài khoản mới vào database
     public int registerNewAccount(UserAccount account) {
         if (account.isEmpty()) {
             System.out.println("account information is empty");
@@ -122,6 +122,8 @@ public class DatabaseManagment {
 
         return -1;
     }
+    // Kiểm tra tài khoản đã tồn tại hay chưa
+    // Trả về ID nếu tài khoản đã tồn tại
 
     public boolean checkPassword(int ID, String password) {
         String SELECT_QUERY = "SELECT USERNAME FROM USER_ACCOUNT WHERE ID = ? AND PASSWORD = ?";
@@ -152,7 +154,8 @@ public class DatabaseManagment {
         }
         return false;
     }
-
+    // Kiểm tra tài khoản đã tồn tại hay chưa
+    // Trả về ID nếu tài khoản đã tồn tại
     public int checkAccount(String email) {
         String SELECT_QUERY = "SELECT ID FROM USER_ACCOUNT WHERE EMAIL = ?";
         ResultSet data = null;
@@ -187,7 +190,7 @@ public class DatabaseManagment {
         }
         return -1;
     }
-
+    // Đổi mật khẩu
     public void changePasswordUser(int ID, String newPassword) {
         String UPDATE_QUERY = "UPDATE USER_ACCOUNT SET PASSWORD = ? WHERE ID = ?";
         try (PreparedStatement statement = conn.prepareStatement(UPDATE_QUERY);) {
@@ -200,7 +203,7 @@ public class DatabaseManagment {
             System.out.println(e);
         }
     }
-
+    // Xem danh sách bạn bè
     public ArrayList<UserAccount> getFriendArrayList(int ID) {
         String SELECT_QUERY = "SELECT UA.ID,UA.USERNAME,UA.FULLNAME,UA.ONLINE,UA.GENDER FROM USER_ACCOUNT UA INNER JOIN USER_FRIEND UF ON UA.ID = UF.FRIEND_ID WHERE UF.ID = ?";
         ResultSet data = null;
@@ -242,7 +245,7 @@ public class DatabaseManagment {
         }
         return friendList;
     }
-
+    // Xem danh sách bạn bè trực tuyến
     public ArrayList<UserAccount> getFriendArrayListByOnline(int ID) {
         String SELECT_QUERY = "SELECT UA.ID,UA.USERNAME,UA.FULLNAME,UA.ONLINE,UA.GENDER FROM USER_ACCOUNT UA INNER JOIN USER_FRIEND UF ON UA.ID = UF.FRIEND_ID WHERE UF.ID = ? ORDER BY UA.ONLINE DESC";
         ResultSet data = null;
@@ -283,7 +286,7 @@ public class DatabaseManagment {
         }
         return friendList;
     }
-
+    //lấy danh sách mảng bạn bè không có trong nhóm
     public ArrayList<UserAccount> getFriendArrayListNotInGroup(int ID, int groupID) {
         String SELECT_QUERY = "SELECT DISTINCT UA.ID,UA.USERNAME,UA.FULLNAME,UA.ONLINE FROM USER_ACCOUNT UA INNER JOIN USER_FRIEND UF ON UA.ID = UF.FRIEND_ID  WHERE UF.ID = ? AND UA.ID NOT IN(SELECT GM.MEMBER_ID FROM GROUPCHAT_MEMBER GM WHERE GM.GROUPCHAT_ID = ?)";
         ResultSet data = null;
@@ -323,7 +326,7 @@ public class DatabaseManagment {
         }
         return friendList;
     }
-
+    //Lấy danh sách mảng bạn bè không có trong nhóm
     public ArrayList<UserAccount> getFriendArrayListNotInGroup(int ID, int groupID, String name) {
         String SELECT_QUERY = "SELECT DISTINCT UA.ID,UA.USERNAME,UA.FULLNAME,UA.ONLINE FROM USER_ACCOUNT UA INNER JOIN USER_FRIEND UF ON UA.ID = UF.FRIEND_ID  WHERE UF.ID = ? AND (UA.USERNAME LIKE ? OR UA.FULLNAME LIKE ?) AND UA.ID NOT IN(SELECT GM.MEMBER_ID FROM GROUPCHAT_MEMBER GM WHERE GM.GROUPCHAT_ID = ?)";
         ResultSet data = null;
@@ -365,7 +368,7 @@ public class DatabaseManagment {
         }
         return friendList;
     }
-
+    // Xem thông tin chi tiết tài khoản
     public UserAccount getDetailAccount(int ID) {
         String SELECT_QUERY = "SELECT * FROM USER_ACCOUNT WHERE ID = ?";
         ResultSet data = null;
@@ -416,7 +419,7 @@ public class DatabaseManagment {
         }
         return null;
     }
-
+    // Xem thông tin chi tiết tài khoản
     public UserAccount getDetailAccount(String username) {
         String SELECT_QUERY = "SELECT * FROM USER_ACCOUNT WHERE USERNAME = ?";
         ResultSet data = null;
@@ -452,7 +455,7 @@ public class DatabaseManagment {
         }
         return null;
     }
-
+    // Kiểm tra xem tài khoản đã tồn tại hay chưa
     public boolean checkAccount(int ID) {
         String SELECT_QUERY = "SELECT ID FROM USER_ACCOUNT WHERE ID = ?";
         ResultSet data = null;
@@ -481,7 +484,7 @@ public class DatabaseManagment {
         }
         return false;
     }
-
+    //kiểm tra đăng nhập
     public boolean checkAccount(String username, String password) {
         String SELECT_QUERY = "SELECT ID FROM USER_ACCOUNT WHERE USERNAME = ? AND PASSWORD = ?";
         ResultSet data = null;
@@ -511,7 +514,7 @@ public class DatabaseManagment {
         }
         return false;
     }
-
+    //Tìm kiếm tài khoản
     public ArrayList<UserAccount> searchAccounts(String name) {
         String SELECT_QUERY = "SELECT * FROM USER_ACCOUNT WHERE USERNAME LIKE '?%'";
         ResultSet data = null;
@@ -551,7 +554,7 @@ public class DatabaseManagment {
         }
         return accountList;
     }
-
+    //Tìm kiếm danh sách bạn bè
     public ArrayList<UserAccount> searchFriendList(int ID, String name) {
         String SELECT_QUERY = "SELECT UA.ID,UA.USERNAME,UA.FULLNAME,UA.ONLINE FROM USER_ACCOUNT UA INNER JOIN USER_FRIEND UF ON UA.ID = UF.FRIEND_ID WHERE UF.ID = ? AND (UA.USERNAME LIKE ? OR UA.FULLNAME LIKE ?)";
         ResultSet data = null;
@@ -592,7 +595,7 @@ public class DatabaseManagment {
         }
         return accountList;
     }
-
+    //Tìm kiếm tài khoản không phải bạn bè
     public ArrayList<UserAccount> searchAccountsNotFriend(int ID, String name) {
         String SELECT_QUERY = "SELECT UA.ID,UA.USERNAME,UA.FULLNAME,UA.EMAIL,UA.ONLINE FROM USER_ACCOUNT UA WHERE UA.ID NOT IN(SELECT FRIEND_ID FROM USER_FRIEND WHERE ID = ?) AND  (UA.USERNAME LIKE ? OR UA.FULLNAME LIKE ?) AND NOT UA.ID = ?";
         ResultSet data = null;
@@ -635,7 +638,7 @@ public class DatabaseManagment {
         }
         return accountList;
     }
-
+    //Tìm kiếm theo ID
     public ArrayList<Integer> searchGroupIDFromUser(int ID) {
         String SELECT_QUERY = "SELECT GROUPCHAT_ID FROM GROUPCHAT_MEMBER WHERE MEMBER_ID = ?";
         ResultSet data = null;
@@ -670,7 +673,7 @@ public class DatabaseManagment {
         }
         return allGroupID;
     }
-
+    //Thêm thành viên vào nhóm
     public int addNewGroup(GroupChat group) {
         if (group.isEmpty()) {
             System.out.println("group is empty");
@@ -681,7 +684,7 @@ public class DatabaseManagment {
         addMemberToGroup(group);
         return groupID;
     }
-
+    //Thêm thành viên vào nhóm
     private int addToGroupTable(GroupChat group) {
         String INSERT_QUERY = "INSERT INTO GROUPCHAT(GROUP_NAME,CREATED_AT,ONLINE)"
                 + "VALUES(?,?,?)";
@@ -706,7 +709,7 @@ public class DatabaseManagment {
         }
         return -1;
     }
-
+    //Thêm thành viên vào nhóm
     private void addMemberToGroup(GroupChat group) {
         String INSERT_QUERY = "INSERT INTO GROUPCHAT_MEMBER(GROUPCHAT_ID,MEMBER_ID,POSITION)"
                 + "VALUES(?,?,?)";
@@ -733,7 +736,7 @@ public class DatabaseManagment {
         }
 
     }
-
+    //Thêm thành viên vào nhóm
     public void addNewMemberToGroup(int groupID, int ID) {
         String INSERT_QUERY = "INSERT INTO GROUPCHAT_MEMBER(GROUPCHAT_ID,MEMBER_ID,POSITION)"
                 + "VALUES(?,?,?)";
@@ -748,7 +751,7 @@ public class DatabaseManagment {
             System.out.println(e);
         }
     }
-
+    //Lấy lịch sử đăng nhập
     public ArrayList<LoginHistory> getAllLoginHistory() {
         String SELECT_QUERY = "SELECT LH.*,UA.USERNAME FROM LOGIN_HISTORY LH INNER JOIN USER_ACCOUNT UA ON LH.USER_ID = UA.ID";
         ResultSet data = null;
@@ -790,7 +793,7 @@ public class DatabaseManagment {
         }
         return loginList;
     }
-
+    //Lấy lịch sử đăng nhập
     public ArrayList<LoginHistory> getAllLoginHistoryUser(int ID) {
         String SELECT_QUERY = "SELECT * FROM LOGIN_HISTORY WHERE USER_ID = ?";
         ResultSet data = null;
@@ -829,7 +832,7 @@ public class DatabaseManagment {
         }
         return loginList;
     }
-
+    //Lấy lịch sử đăng nhập
     public ArrayList<LoginHistory> getAllLoginHistory(String sort, String by) {
         String SELECT_QUERY = "SELECT LH.*,UA.* FROM LOGIN_HISTORY LH INNER JOIN USER_ACCOUNT UA ON LH.USER_ID = UA.ID ORDER BY "
                 + sort + " " + by;
@@ -873,7 +876,7 @@ public class DatabaseManagment {
         }
         return loginList;
     }
-
+    //Thêm lịch sử đăng nhập
     public void addToLoginHistory(int ID) {
         String INSERT_QUERY = "INSERT INTO LOGIN_HISTORY(USER_ID,LOGIN_TIME)"
                 + "VALUES(?,?)";
@@ -1015,7 +1018,7 @@ public class DatabaseManagment {
         return accountList;
 
     }
-
+    //Lấy danh sách tài khoản
     public ArrayList<UserAccount> searchUserAccount(String username, String fullname, String banned, String sort) {
 
         boolean check = false;
@@ -1099,7 +1102,7 @@ public class DatabaseManagment {
         return accountList;
 
     }
-
+    //Lấy thông tin group chat
     public GroupChat getDetailGroupChat(int groupID) {
         String SELECT_QUERY = "SELECT GC.ID,GC.GROUP_NAME,COUNT(MB.MEMBER_ID) AS SOLUONG,GC.CREATED_AT,GC.ONLINE FROM GROUPCHAT GC LEFT OUTER JOIN GROUPCHAT_MEMBER MB ON GC.ID = MB.GROUPCHAT_ID WHERE GC.ID = ? GROUP BY GC.ID ";
         ResultSet data = null;
@@ -1137,7 +1140,7 @@ public class DatabaseManagment {
         }
         return groupChat;
     }
-
+    //Lấy thông tin tất cả group chat
     public ArrayList<GroupChat> getAllGroupChat() {
         String SELECT_QUERY = "SELECT GC.ID,GC.GROUP_NAME,COUNT(MB.MEMBER_ID) AS SOLUONG,GC.CREATED_AT,GC.ONLINE FROM GROUPCHAT GC LEFT OUTER JOIN GROUPCHAT_MEMBER MB ON GC.ID = MB.GROUPCHAT_ID GROUP BY GC.ID";
         ResultSet data = null;
@@ -1180,7 +1183,7 @@ public class DatabaseManagment {
         }
         return groupList;
     }
-
+    //Lấy thông tin tất cả group chat
     public ArrayList<GroupChat> getAllGroupChat(String name, String sort, String by) {
         String findName = "";
         if(!name.isEmpty()){
@@ -1231,7 +1234,7 @@ public class DatabaseManagment {
         }
         return groupList;
     }
-
+    //Lấy thông tin tất cả group chat đang truy cập
     public ArrayList<GroupChat> getAllGroupChatOnline(int ID) {
         String SELECT_QUERY = "SELECT GC.* FROM GROUPCHAT_MEMBER GM LEFT OUTER JOIN GROUPCHAT GC ON GM.GROUPCHAT_ID = GC.ID WHERE GM.MEMBER_ID = ? ORDER BY GC.ONLINE DESC";
         ResultSet data = null;
@@ -1269,7 +1272,7 @@ public class DatabaseManagment {
         }
         return groupList;
     }
-
+    //Lấy message từ 1 user
     public ArrayList<Message> getAllMessageFromUser(int ID) {
         String SELECT_QUERY = "SELECT MU.ID,MU.CHATBOX_ID,UA.USERNAME,MU.TIME_SEND,MU.CONTENT,MU.VISIBLE_ONLY FROM MESSAGE_USER MU INNER JOIN USER_ACCOUNT UA ON UA.ID = MU.FROM_USER WHERE (MU.FROM_USER = ? OR MU.TO_USER = ?) AND (VISIBLE_ONLY = ? OR VISIBLE_ONLY = ?) ORDER BY MU.TIME_SEND ASC";
         ResultSet data = null;
@@ -1316,7 +1319,7 @@ public class DatabaseManagment {
         }
         return messageList;
     }
-
+    //Lấy message từ 1 user
     public ArrayList<Message> searchMessageUser(String ChatBoxID, String keyword, int ID) {
         String SELECT_QUERY = "SELECT MU.ID,MU.CHATBOX_ID,UA.USERNAME,MU.TIME_SEND,MU.CONTENT,MU.VISIBLE_ONLY FROM MESSAGE_USER MU INNER JOIN USER_ACCOUNT UA ON UA.ID = MU.FROM_USER WHERE MU.CHATBOX_ID = ? AND MU.CONTENT LIKE ? AND (VISIBLE_ONLY = ? OR VISIBLE_ONLY = ?) ORDER BY MU.TIME_SEND ASC";
         ResultSet data = null;
@@ -1367,7 +1370,7 @@ public class DatabaseManagment {
         }
         return messageList;
     }
-
+    //Lấy message từ 1 user trong 1 group
     public ArrayList<Message> getAllMessageGroupFromUser(int ID) {
         String SELECT_QUERY = "SELECT MG.*,UA.USERNAME FROM MESSAGE_GROUP MG LEFT OUTER JOIN USER_ACCOUNT UA ON MG.FROM_USER = UA.ID WHERE TO_GROUP IN (SELECT GC.ID FROM GROUPCHAT_MEMBER GM LEFT OUTER JOIN GROUPCHAT GC ON GM.GROUPCHAT_ID = GC.ID WHERE GM.MEMBER_ID = ?) ORDER BY MG.TIME_SEND ASC";
         ResultSet data = null;
@@ -1411,7 +1414,7 @@ public class DatabaseManagment {
         }
         return messageList;
     }
-
+    //Search mesage group
     public ArrayList<Message> searchMessageGroup(int groupID, String keyword) {
         String SELECT_QUERY = "SELECT MG.*,UA.USERNAME FROM MESSAGE_GROUP MG LEFT OUTER JOIN USER_ACCOUNT UA ON MG.FROM_USER = UA.ID WHERE TO_GROUP = ? AND CONTENT LIKE ? ORDER BY MG.TIME_SEND ASC";
         ResultSet data = null;
@@ -1456,7 +1459,7 @@ public class DatabaseManagment {
         }
         return messageList;
     }
-
+    //Lấy danh sách yêu cầu
     public ArrayList<FriendRequest> getAllFriendRequestRaw(int ID) {
         String SELECT_QUERY = "SELECT FR.*,UA.USERNAME FROM FRIEND_REQUEST FR LEFT OUTER JOIN USER_ACCOUNT UA ON FR.FROM_ID = UA.ID WHERE TO_ID = ?";
         ResultSet data = null;
