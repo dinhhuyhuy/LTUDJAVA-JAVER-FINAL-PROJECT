@@ -67,7 +67,8 @@ public class PasswordService {
 
     public static String encryptPassword(String password){
         
-        String key = System.getenv("SECRETKEY_JAVA");
+//        String key = System.getenv("SECRETKEY_JAVA");
+        String key = "080703";
         if(key == null){
             System.out.println("key not found");
         }
